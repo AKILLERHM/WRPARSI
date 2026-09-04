@@ -1,6 +1,6 @@
 /* ==========================================================================
    WRPARSI — main.css
-   پالت رنگی: baltic blue / teal / verdigris / mint leaf / cream
+   پالت رنگی: #031716 / #032F30 / #0A7075 / #0C969C / #6BA3BE / #274D60
    با پشتیبانی از حالت دارک/لایت (دستی + خودکار بر اساس سیستم)
    ========================================================================== */
 
@@ -8,52 +8,53 @@
 
 /* ---------- پالت خام (ثابت در هر دو تم) ---------- */
 :root {
-  --baltic-blue: #05668D;
-  --teal: #028090;
-  --verdigris: #00A896;
-  --mint: #02C39A;
-  --cream: #F0F3BD;
+  --c-darkest: #031716;  /* تیره‌ترین */
+  --c-dark:    #032F30;
+  --c-navy:    #274D60;
+  --c-teal:    #0A7075;
+  --c-cyan:    #0C969C;
+  --c-light:   #6BA3BE;  /* روشن‌ترین */
 }
 
 /* ---------- متغیرهای معنایی: حالت لایت (پیش‌فرض) ---------- */
 :root,
 [data-theme="light"] {
-  --color-bg: var(--cream);
-  --color-surface: #FFFFFF;
-  --color-surface-border: #DDE2A8;
-  --color-nav-bg: var(--baltic-blue);
-  --color-text: #043B52;
-  --color-text-muted: #3C5A66;
-  --color-heading: var(--baltic-blue);
-  --color-on-accent: var(--cream);
-  --color-shadow: rgba(5, 102, 141, 0.15);
+  --color-bg: var(--c-light);
+  --color-surface: color-mix(in srgb, var(--c-light) 25%, white);
+  --color-surface-border: color-mix(in srgb, var(--c-navy) 35%, white);
+  --color-nav-bg: var(--c-dark);
+  --color-text: var(--c-darkest);
+  --color-text-muted: var(--c-navy);
+  --color-heading: var(--c-teal);
+  --color-on-accent: var(--c-light);
+  --color-shadow: rgba(3, 23, 22, 0.18);
 }
 
 /* ---------- متغیرهای معنایی: حالت دارک (دستی) ---------- */
 [data-theme="dark"] {
-  --color-bg: #071620;
-  --color-surface: #0E2733;
-  --color-surface-border: #16394A;
-  --color-nav-bg: #071620;
-  --color-text: #E7ECC9;
-  --color-text-muted: #9FB2A8;
-  --color-heading: var(--mint);
-  --color-on-accent: #04231D;
-  --color-shadow: rgba(0, 0, 0, 0.4);
+  --color-bg: var(--c-darkest);
+  --color-surface: var(--c-dark);
+  --color-surface-border: var(--c-navy);
+  --color-nav-bg: var(--c-dark);
+  --color-text: var(--c-light);
+  --color-text-muted: var(--c-teal);
+  --color-heading: var(--c-cyan);
+  --color-on-accent: var(--c-darkest);
+  --color-shadow: rgba(0, 0, 0, 0.5);
 }
 
 /* ---------- حالت خودکار: وقتی کاربر چیزی انتخاب نکرده، از سیستم پیروی کن ---------- */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]):not([data-theme="dark"]) {
-    --color-bg: #071620;
-    --color-surface: #0E2733;
-    --color-surface-border: #16394A;
-    --color-nav-bg: #071620;
-    --color-text: #E7ECC9;
-    --color-text-muted: #9FB2A8;
-    --color-heading: var(--mint);
-    --color-on-accent: #04231D;
-    --color-shadow: rgba(0, 0, 0, 0.4);
+    --color-bg: var(--c-darkest);
+    --color-surface: var(--c-dark);
+    --color-surface-border: var(--c-navy);
+    --color-nav-bg: var(--c-dark);
+    --color-text: var(--c-light);
+    --color-text-muted: var(--c-teal);
+    --color-heading: var(--c-cyan);
+    --color-on-accent: var(--c-darkest);
+    --color-shadow: rgba(0, 0, 0, 0.5);
   }
 }
 
@@ -92,7 +93,7 @@ img {
   display: block;
 }
 
-/* ---------- Navbar ---------- */
+/* ---------- Navbar (پس‌زمینه‌اش همیشه تیره می‌مونه، در هر دو تم) ---------- */
 
 nav {
   display: flex;
@@ -106,7 +107,7 @@ nav {
 }
 
 nav a {
-  color: var(--cream);
+  color: var(--c-light);
   font-weight: 500;
 }
 
@@ -124,19 +125,19 @@ nav ul a {
 }
 
 nav ul a:hover {
-  color: var(--mint);
+  color: var(--c-cyan);
 }
 
 nav a:first-child {
   font-weight: 900;
   font-size: 1.2rem;
-  color: var(--cream);
+  color: var(--c-light);
 }
 
 .navbar .logo {
   font-weight: 900;
   font-size: 1.25rem;
-  color: var(--cream);
+  color: var(--c-light);
   letter-spacing: 0.02em;
 }
 
@@ -148,17 +149,17 @@ nav a:first-child {
   justify-content: center;
   width: 2.4rem;
   height: 2.4rem;
-  border: 1px solid rgba(240, 243, 189, 0.35);
+  border: 1px solid rgba(107, 163, 190, 0.4);
   border-radius: 50%;
   background: transparent;
-  color: var(--cream);
+  color: var(--c-light);
   font-size: 1.1rem;
   cursor: pointer;
   transition: background 0.2s ease, transform 0.15s ease;
 }
 
 .theme-toggle:hover {
-  background: rgba(240, 243, 189, 0.12);
+  background: rgba(107, 163, 190, 0.15);
   transform: rotate(15deg);
 }
 
@@ -187,7 +188,7 @@ section {
 
 footer {
   background: var(--color-nav-bg);
-  color: var(--cream);
+  color: var(--c-light);
   text-align: center;
   padding: 1.5rem;
   font-size: 0.9rem;

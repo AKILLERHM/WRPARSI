@@ -1,6 +1,10 @@
+{% load static %}
 <nav class="navbar">
     <div class="logo">
-        mysite
+        <a href="{% url 'Home' %}">
+            <img src="{% static 'images/WRP_logo_site.jpg' %}" alt="WRP" 
+            class="logo__img">
+        </a>
     </div>
 
     <ul id="nav-links">
@@ -10,7 +14,8 @@
         <li><a href="#">رون ها</a></li>
     </ul>
 
-    <button class="theme-toggle" data-theme-toggle type="button" aria-label="تغییر حالت روشن/تاریک">
+    <button class="theme-toggle" data-theme-toggle type="button"
+    aria-label="تغییر حالت روشن/تاریک">
         <span class="icon-light">☀️</span>
         <span class="icon-dark">🌙</span>
     </button>
