@@ -1,0 +1,17 @@
+<nav class="navbar">
+    <div class="logo">
+        mysite
+    </div>
+
+    <ul id="nav-links">
+        <li><a href="{% url 'Home' %}">خانه</a></li>
+        <li><a href="{% url 'champions' %}">قهرمانان</a></li>
+        <li><a href="#">آیتم ها</a></li>
+        <li><a href="#">رون ها</a></li>
+    </ul>
+
+    <button class="theme-toggle" data-theme-toggle type="button" aria-label="تغییر حالت روشن/تاریک">
+        <span class="icon-light">☀️</span>
+        <span class="icon-dark">🌙</span>
+    </button>
+</nav>

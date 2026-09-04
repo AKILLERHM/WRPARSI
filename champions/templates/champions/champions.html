@@ -1,0 +1,14 @@
+{% extends "main.html" %}
+
+
+{% block content %}
+
+    <h1>لیست چمپیون ها</h1>
+    
+    <ul>
+        {% for champ in champs %}
+        <li>{{ champ.name }}</li>
+        {% endfor %}
+    </ul>
+    
+{% endblock content %}

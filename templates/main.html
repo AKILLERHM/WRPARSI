@@ -1,0 +1,26 @@
+</html><!DOCTYPE html>
+{% load static %}
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WRPARSI</title>
+    <script src="{% static 'js/theme.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'style/main.css' %}">
+</head>
+<body>
+
+    {% include "navbar.html" %}
+
+    <main>
+        {% block content %}
+
+        {% endblock content %}
+    </main>
+
+    <footer>
+        WRPARSI &middot; ساخته‌شده برای یادگیری جنگو
+    </footer>
+
+</body>
+</html>
