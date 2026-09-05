@@ -1,25 +1,26 @@
 {% extends "main.html" %}
+{% load static %}
 
+{% block extra_head %}
+<!-- اگر فایل home.css داخل پوشه css است آدرس را به این شکل بده -->
+<link rel="stylesheet" href="{% static 'style/home.css' %}">
+{% endblock %}
 
 {% block content %}
 
-    <div class="intorduce">
-
-        <img src="" alt="">
-
+    <div class="introduce">
+        <img src="{% static 'images/wildrift-icon.png' %}" alt="Wild Rift Icon" class="introduce__img">
         <h1>Wild Rift | Parsi</h1>
-        <p>لیگ افسانه‌ها: وایلد ریفت (انگلیسی: League of Legends: Wild Rift) یک بازی ویدئویی میدان جنگ برخط چندنفره است که توسط رایت گیمز توسعه یافته و برای اندروید، آی‌اواس و برای کنسولها منتشر شده‌است. این بازی نسخه اصلاح شده بازی رایانه شخصی، لیگ افسانه‌ها است</p>
-
     </div>
 
+    <p class="introduce__desc">
+        لیگ افسانه‌ها: وایلد ریفت (انگلیسی: League of Legends: Wild Rift) یک بازی ویدئویی میدان جنگ برخط چندنفره است که توسط رایت گیمز توسعه یافته و برای اندروید، آی‌اواس و برای کنسولها منتشر شده‌است. این بازی نسخه اصلاح شده بازی رایانه شخصی، لیگ افسانه‌ها است.
+    </p>
+
     <div class="goto">
-        <ul>
-            <li>
-                <button class="btn">قهرمانان</button>
-                <button class="btn">آیتم ها</button>
-                <button class="btn">رونز ها</button>
-            </li>
-        </ul>
+        <a href="{% url 'champions' %}" class="btn">قهرمانان</a>
+        <a href="#" class="btn">آیتم ها</a>
+        <a href="#" class="btn">رون ها</a>
     </div>
 
 {% endblock content %}

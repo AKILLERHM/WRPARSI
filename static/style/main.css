@@ -128,17 +128,21 @@ nav ul a:hover {
   color: var(--c-cyan);
 }
 
-nav a:first-child {
-  font-weight: 900;
-  font-size: 1.2rem;
-  color: var(--c-light);
-}
+
 
 .navbar .logo {
   font-weight: 900;
   font-size: 1.25rem;
   color: var(--c-light);
   letter-spacing: 0.02em;
+}
+
+.logo__img {
+  height: 42px; /* تنظیم ارتفاع مناسب برای Navbar */
+  width: auto;
+  object-fit: contain;
+  mix-blend-mode: screen; /* حذف پس‌زمینه مشکی تصویر */
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4)); /* ایجاد سایه ملایم پشت حروف */
 }
 
 /* ---------- دکمه توگل تم ---------- */
