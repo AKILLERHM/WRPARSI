@@ -1,0 +1,92 @@
+/* ==========================================================================
+   Champions Page Styles — champions.css
+   ========================================================================== */
+
+.champions-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+.page-title {
+  text-align: center;
+  color: var(--color-heading, #0C969C);
+  margin-bottom: 2.5rem;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+/* شبکه گرید کارت‌ها */
+.champions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ساختار هر کارت */
+.champion-card {
+  background: var(--c-dark, #032F30);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px var(--color-shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.champion-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(12, 150, 156, 0.3);
+}
+
+/* تصویر کارت */
+.card-image-wrapper {
+  width: 100%;
+  aspect-ratio: 3 / 4; /* نسبت ابعاد کارت‌های وایلدریفت */
+  overflow: hidden;
+}
+
+.champion-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.champion-card:hover .champion-img {
+  transform: scale(1.05);
+}
+
+/* نوار مشخصات زیر کارت (سبک وایلدریفت) */
+.champion-info-bar {
+  background-color: var(--c-cyan, #0C969C);
+  padding: 0.6rem 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.champion-name {
+  color: #ffffff;
+  font-weight: 900;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.champion-role {
+  color: var(--c-darkest, #031716);
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+}
+
+/* واکنش‌گرایی برای گوشی */
+@media (max-width: 600px) {
+  .champions-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}

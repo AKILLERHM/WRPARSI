@@ -1,14 +1,30 @@
 {% extends "main.html" %}
+{% load static %}
 
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'style/champions.css' %}">
+{% endblock %}
 
 {% block content %}
 
-    <h1>لیست چمپیون ها</h1>
-    
-    <ul>
-        {% for champ in champs %}
-        <li>{{ champ.name }}</li>
-        {% endfor %}
-    </ul>
+    <div class="champions_container">
+        <h1 class="page_title">لیست قهرمانان</h1>
+
+        <div class="champions_grid">
+            {% for champion in champions %}
+            <div class="champion_card">
+                <div class="card_image_wraper">
+                    <img src="{{ champion.image.url }}" alt="{{ champion.name }}" class="champion_img">
+                </div>
+                <div class="champion_info_bar">
+                    <span class="champion_name">{{ champion.name }}</span>
+                    <span class="champion_role">{{ champion.role }}</span>
+                </div>
+            </div>
+            {% empty %}
+                <p>هیچ قهرمانی یافت نشد</p>
+            {% endfor %}
+        </div>
+    </div>
     
 {% endblock content %}
