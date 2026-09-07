@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from champions.models import Champions
+from champions.models import Champion
 
 
 def home(request):
@@ -9,7 +9,7 @@ def home(request):
 
 def champions_view(request):
 
-    champs = Champions.objects.all()
+    champs = Champion.objects.all()
 
     context = {"champs" : champs}
 

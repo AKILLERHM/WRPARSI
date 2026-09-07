@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Champions
+from .models import Champion, ChampionRole
 
 
-admin.site.register(Champions)
+admin.site.register(Champion)
+admin.site.register(ChampionRole)
