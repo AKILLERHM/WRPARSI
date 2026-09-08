@@ -21,6 +21,7 @@ class Champion(models.Model):
     title = models.CharField(max_length=256)
     title_parsi = models.CharField(max_length=256)
     description = models.TextField(blank=True)
+    image_url = models.URLField(blank=True, null=True)
 
 
     roles = models.ManyToManyField(ChampionRole, related_name="champions")

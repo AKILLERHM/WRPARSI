@@ -7,18 +7,23 @@
 
 {% block content %}
 
-    <div class="champions_container">
-        <h1 class="page_title">لیست قهرمانان</h1>
+    <div class="champions-container">
+        <h1 class="page-title">لیست قهرمانان</h1>
 
-        <div class="champions_grid">
-            {% for champion in Champions %}
-            <div class="champion_card">
-                <div class="card_image_wraper">
-                    <img src="{{ champion.image.url }}" alt="{{ champion.name }}" class="champion_img">
+        <div class="champions-grid">
+            {% for champion in champs %}
+            <div class="champion-card">
+                <div class="card-image-wraper">
+                    {% if champion.image_url %}
+                    <img src="{{ champion.image_url }}" alt="{{ champion.name }}" class="champion-img">
+                    {% endif %}
                 </div>
-                <div class="champion_info_bar">
-                    <span class="champion_name">{{ champion.name }}</span>
-                    <span class="champion_role">{{ champion.role }}</span>
+                <div class="champion-info-bar">
+                    <span class="champion-name">{{ champion.name }}</span>
+                    <span class="champion-role">
+                        {% for role in champion.roles.all %}{{ role.name }}{% if not forloop.last %},{% endif %}{% endfor %}
+                        
+                    </span>
                 </div>
             </div>
             {% empty %}
