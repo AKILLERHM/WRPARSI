@@ -12,20 +12,22 @@
 
         <div class="champions-grid">
             {% for champion in champs %}
-            <div class="champion-card">
-                <div class="card-image-wraper">
+            <a href="{% url 'ChampionPage' champion.pk %}" class="champion-card">
+                <div class="card-image-wrapper">
                     {% if champion.image_url %}
                     <img src="{{ champion.image_url }}" alt="{{ champion.name }}" class="champion-img">
                     {% endif %}
                 </div>
                 <div class="champion-info-bar">
                     <span class="champion-name">{{ champion.name }}</span>
-                    <span class="champion-role">
-                        {% for role in champion.roles.all %}{{ role.name }}{% if not forloop.last %},{% endif %}{% endfor %}
+                    <span class="champion-roles">
+                        {% for role in champion.roles.all %}{% if role.icon_url %}<img src="{{ role.icon_url }}" alt="{{ role.name }}"
+                         class="role-icon" title="{{ role.name }}">{% endif %}
+                        {% endfor %}
                         
                     </span>
                 </div>
-            </div>
+            </a>
             {% empty %}
                 <p>هیچ قهرمانی یافت نشد</p>
             {% endfor %}

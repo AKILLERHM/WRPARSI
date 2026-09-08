@@ -16,22 +16,24 @@
   font-weight: 900;
 }
 
-/* شبکه گرید کارت‌ها */
+/* شبکه گرید کارت‌ها: ۸ ستون توی دسکتاپ */
 .champions-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(8, 1fr);
   gap: 1.5rem;
 }
 
-/* ساختار هر کارت */
+/* ساختار هر کارت (الان یه تگ <a> هست، پس باید استایل لینک رو خنثی کنیم) */
 .champion-card {
+  display: flex;
+  flex-direction: column;
   background: var(--c-dark, #032F30);
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 12px var(--color-shadow);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
-  display: flex;
-  flex-direction: column;
+  color: inherit;
+  text-decoration: none;
 }
 
 .champion-card:hover {
@@ -64,29 +66,62 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 0.5rem;
 }
 
 .champion-name {
   color: #ffffff;
   font-weight: 900;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.champion-role {
-  color: var(--c-darkest, #031716);
-  font-size: 0.8rem;
-  font-weight: 700;
-  background: rgba(255, 255, 255, 0.2);
-  padding: 0.15rem 0.4rem;
-  border-radius: 4px;
+/* آیکون‌های رول به‌جای متن — همیشه افقی و کوچیک، صرف‌نظر از سایز واقعی فایل */
+.champion-roles {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.3rem;
+  flex-shrink: 0;
 }
 
-/* واکنش‌گرایی برای گوشی */
+.champion-roles .role-icon {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  max-width: 16px;
+  object-fit: contain;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.15);
+  flex-shrink: 0;
+}
+
+/* واکنش‌گرایی: تبلت */
+@media (max-width: 900px) {
+  .champions-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* واکنش‌گرایی برای گوشی: ۴ ستون */
 @media (max-width: 600px) {
   .champions-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.8rem;
+  }
+
+  .champion-name {
+    font-size: 0.7rem;
+  }
+
+  .champion-roles .role-icon {
+    width: 12px;
+    height: 12px;
+    min-width: 12px;
+    max-width: 12px;
   }
 }

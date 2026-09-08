@@ -1,6 +1,31 @@
 {% extends "main.html" %}
+{% load static %}
 
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'style/champion_detail.css' %}">
+{% endblock %}
 
 {% block content %}
+
+    <div class="champion-detail">
+        {% if champion.image_url %}
+            <img src="{{ champion.image_url }}" alt="{{ champion.name }}" class="champion-detail__img">
+        {% endif %}
+
+        <h1 class="champion-detail__name">{{ champion.name_parsi|default:champion.name }}</h1>
+        <p class="champion-detail__title">{{ champion.title_parsi|default:champion.title }}</p>
+
+        <div class="champion-detail__roles">
+            {% for role in champion.roles.all %}
+                {% if role.icon_url %}
+                    <img src="{{ role.icon_url }}" alt="{{ role.name }}" class="role-icon" title="{{ role.name }}">
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <p class="champion-detail__description">{{ champion.description }}</p>
+
+        <a href="{% url 'champions' %}" class="btn-back">&larr; بازگشت به لیست قهرمانان</a>
+    </div>
 
 {% endblock content %}

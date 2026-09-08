@@ -6,6 +6,7 @@ class ChampionRole(models.Model):
 
     code = models.CharField(max_length=5, unique=True)
     name = models.CharField(max_length=64)
+    icon_url = models.URLField(blank=True, null=True)
 
     class Meta:
              verbose_name = "Role"

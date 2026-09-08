@@ -1,0 +1,61 @@
+/* ==========================================================================
+   Champion Detail Page Styles — champion_detail.css
+   ========================================================================== */
+
+.champion-detail {
+  max-width: 720px;
+  margin: 2.5rem auto;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+.champion-detail__img {
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 0 auto 1.5rem;
+}
+
+.champion-detail__name {
+  color: var(--color-heading, #0C969C);
+  font-size: 2rem;
+  margin-bottom: 0.3rem;
+}
+
+.champion-detail__title {
+  color: var(--color-text-muted);
+  margin-bottom: 1.2rem;
+}
+
+.champion-detail__roles {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.champion-detail__roles .role-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.champion-detail__description {
+  color: var(--color-text);
+  line-height: 1.9;
+  margin-bottom: 2rem;
+  text-align: justify;
+}
+
+.btn-back {
+  display: inline-block;
+  color: var(--color-heading, #0C969C);
+  font-weight: 700;
+}
+
+.btn-back:hover {
+  text-decoration: underline;
+}
