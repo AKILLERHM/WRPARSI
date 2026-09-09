@@ -19,13 +19,12 @@
                     {% endif %}
                 </div>
                 <div class="champion-info-bar">
-                    <span class="champion-name">{{ champion.name }}</span>
-                    <span class="champion-roles">
+                    <div class="champion-info-bar__name">{{ champion.name }}</div>
+                    <div class="champion-info-bar__roles">
                         {% for role in champion.roles.all %}{% if role.icon_url %}<img src="{{ role.icon_url }}" alt="{{ role.name }}"
                          class="role-icon" title="{{ role.name }}">{% endif %}
                         {% endfor %}
-                        
-                    </span>
+                    </div>
                 </div>
             </a>
             {% empty %}
@@ -35,3 +34,8 @@
     </div>
     
 {% endblock content %}
+
+
+{% block extra_js %}
+<script src="{% static 'js/fit-champion-names.js' %}"></script>
+{% endblock %}

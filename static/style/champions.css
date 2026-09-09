@@ -59,37 +59,39 @@
   transform: scale(1.05);
 }
 
-/* نوار مشخصات زیر کارت (سبک وایلدریفت) */
+/* باکس اطلاعات زیر عکس — دو ردیف روی هم: بالا اسم، پایین رول‌ها */
 .champion-info-bar {
   background-color: var(--c-cyan, #0C969C);
-  padding: 0.6rem 0.8rem;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.5rem;
+  flex-direction: column;
 }
 
-.champion-name {
+.champion-info-bar__name {
+  padding: 0.55rem 0.8rem 0.35rem;
   color: #ffffff;
   font-weight: 900;
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.03em;
+  text-align: center;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; /* fallback اگه جاوااسکریپت به هر دلیلی اجرا نشد */
 }
 
-/* آیکون‌های رول به‌جای متن — همیشه افقی و کوچیک، صرف‌نظر از سایز واقعی فایل */
-.champion-roles {
+.champion-info-bar__roles {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   gap: 0.3rem;
-  flex-shrink: 0;
+  padding: 0 0.8rem 0.55rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: 0.35rem;
+  margin-top: 0.1rem;
 }
 
-.champion-roles .role-icon {
+.champion-info-bar__roles .role-icon {
   width: 16px;
   height: 16px;
   min-width: 16px;
@@ -114,11 +116,17 @@
     gap: 0.8rem;
   }
 
-  .champion-name {
+  .champion-info-bar__name {
     font-size: 0.7rem;
+    padding: 0.45rem 0.5rem 0.25rem;
   }
 
-  .champion-roles .role-icon {
+  .champion-info-bar__roles {
+    padding: 0.25rem 0.6rem 0.45rem;
+    gap: 0.25rem;
+  }
+
+  .champion-info-bar__roles .role-icon {
     width: 12px;
     height: 12px;
     min-width: 12px;
