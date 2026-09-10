@@ -16,6 +16,52 @@
   font-weight: 900;
 }
 
+.champion-search {
+    width: 100%;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+
+    display: flex;
+    justify-content: center;
+}
+
+.champion-search input {
+    width: 100%;
+    max-width: 500px;
+
+    padding: 0.9rem 1.2rem;
+
+    border: 1px solid var(--color-surface-border);
+    border-radius: 12px;
+
+    background: var(--color-surface);
+    color: var(--color-text);
+
+    font-family: inherit;
+    font-size: 1rem;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.champion-search input::placeholder {
+    color: var(--color-text-muted);
+}
+
+.champion-search input:focus {
+    border-color: var(--c-cyan);
+
+    box-shadow:
+        0 0 0 3px color-mix(
+            in srgb,
+            var(--c-cyan) 15%,
+            transparent
+        );
+}
+
 /* شبکه گرید کارت‌ها: ۸ ستون توی دسکتاپ */
 .champions-grid {
   display: grid;

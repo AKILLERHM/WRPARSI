@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from champions.models import Champion
+from django.db.models import Q
 
 
 def home(request):
@@ -13,6 +14,22 @@ def champions_view(request):
     context = {"champs" : champs}
 
     return render(request, "champions/champions.html", context)
+
+
+def champion_search(request):
+    query = request.GET.get("q", "").strip()
+
+    if not query:
+        champions = Champion.objects.all()
+    else:
+        champions = Champion.objects.filter(
+            Q(name__icontains=query) |
+            Q(name_parsi__icontains=query)
+        )
+
+    context = {"champions" : champions}
+
+    return render(request, "partials/champion_search_results.html", context)
 
 
 def champion_page(request, slug):

@@ -1,0 +1,42 @@
+{% for champion in champions %}
+
+    <a href="{% url 'ChampionPage' champion.slug %}" class="champion-card">
+
+        <div class="card-image-wrapper">
+            {% if champion.image_url %}
+                <img
+                    src="{{ champion.image_url }}"
+                    alt="{{ champion.name }}"
+                    class="champion-img"
+                >
+            {% endif %}
+        </div>
+
+        <div class="champion-info-bar">
+
+            <div class="champion-info-bar__name">
+                {{ champion.name }}
+            </div>
+
+            <div class="champion-info-bar__roles">
+                {% for role in champion.roles.all %}
+                    {% if role.icon_url %}
+                        <img
+                            src="{{ role.icon_url }}"
+                            alt="{{ role.name }}"
+                            class="role-icon"
+                            title="{{ role.name }}"
+                        >
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+        </div>
+
+    </a>
+
+{% empty %}
+
+    <p>هیچ قهرمانی یافت نشد</p>
+
+{% endfor %}

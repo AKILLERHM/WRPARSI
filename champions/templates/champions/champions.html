@@ -10,7 +10,20 @@
     <div class="champions-container">
         <h1 class="page-title">لیست قهرمانان</h1>
 
-        <div class="champions-grid">
+        <div class="champion-search">
+            <input
+                type="text"
+                name="q"
+                placeholder="جستجوی قهرمان..."
+                hx-get="{% url 'ChampionSearch' %}"
+                hx-trigger="keyup changed delay:300ms"
+                hx-target="#champions-results"
+                hx-swap="innerHTML"
+                autocomplete="off"
+            >
+        </div>
+
+        <div class="champions-grid" id="champions-results">
             {% for champion in champs %}
             <a href="{% url 'ChampionPage' champion.slug %}" class="champion-card">
                 <div class="card-image-wrapper">
