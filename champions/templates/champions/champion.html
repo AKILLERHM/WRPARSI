@@ -1,31 +1,263 @@
 {% extends "main.html" %}
 {% load static %}
 
+
 {% block extra_head %}
-<link rel="stylesheet" href="{% static 'style/champion_detail.css' %}">
+<link rel="stylesheet" href="{% static 'style/champion.css' %}">
 {% endblock %}
+
 
 {% block content %}
 
-    <div class="champion-detail">
-        {% if champion.image_url %}
-            <img src="{{ champion.image_url }}" alt="{{ champion.name }}" class="champion-detail__img">
+<div class="champion-page">
+
+    <!-- =====================================================
+         Champion Hero
+         ===================================================== -->
+
+    <section class="champion-hero">
+
+        <!-- Background با کیفیت بالا -->
+        {% if champion.picture %}
+            <div
+                class="champion-hero__background"
+                style="background-image: url('{{ champion.picture.url }}');">
+            </div>
         {% endif %}
 
-        <h1 class="champion-detail__name">{{ champion.name_parsi|default:champion.name }}</h1>
-        <p class="champion-detail__title">{{ champion.title_parsi|default:champion.title }}</p>
+        <div class="champion-hero__overlay"></div>
 
-        <div class="champion-detail__roles">
-            {% for role in champion.roles.all %}
-                {% if role.icon_url %}
-                    <img src="{{ role.icon_url }}" alt="{{ role.name }}" class="role-icon" title="{{ role.name }}">
+
+        <div class="champion-hero__content">
+
+            <!-- Portrait از image_url -->
+            <div class="champion-portrait">
+
+                {% if champion.image_url %}
+                    <img
+                        src="{{ champion.image_url }}"
+                        alt="{{ champion.name }}"
+                    >
                 {% endif %}
-            {% endfor %}
+
+            </div>
+
+
+            <div class="champion-info">
+
+                <div class="champion-name-row">
+
+                    <h1 class="champion-name">
+                        {{ champion.name }}
+                    </h1>
+
+                    {% if champion.roles.all %}
+                        <div class="champion-roles">
+
+                            {% for role in champion.roles.all %}
+                                <span class="champion-role">
+                                    {{ role.name }}
+                                </span>
+                            {% endfor %}
+
+                        </div>
+                    {% endif %}
+
+                </div>
+
+
+                <!-- لقب انگلیسی -->
+                <p class="champion-title">
+                    {{ champion.title }}
+                </p>
+
+                <!-- لقب فارسی -->
+                <p class="champion-title-parsi">
+                    {{ champion.title_parsi }}
+                </p>
+
+            </div>
+
         </div>
 
-        <p class="champion-detail__description">{{ champion.description }}</p>
+    </section>
 
-        <a href="{% url 'champions' %}" class="btn-back">&larr; بازگشت به لیست قهرمانان</a>
-    </div>
+
+    <!-- =====================================================
+         Description
+         ===================================================== -->
+
+    <section class="champion-description">
+
+        <p>
+            {{ champion.description }}
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         Abilities
+         ===================================================== -->
+
+    <section class="abilities-section">
+
+        <div class="section-title">
+            <span>توانایی‌ها</span>
+        </div>
+
+
+        <div class="abilities-list">
+
+            {% for ability in champion.abilities.all %}
+
+                <article class="ability-card">
+
+                    <!-- Ability Icon -->
+
+                    <div class="ability-icon">
+
+                        {% if ability.icon_url %}
+                            <img
+                                src="{{ ability.icon_url }}"
+                                alt="{{ ability.name }}"
+                            >
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- Ability Information -->
+
+                    <div class="ability-content">
+
+                        <div class="ability-header">
+
+                            <h2 class="ability-name">
+                                {{ ability.name }}
+                            </h2>
+
+                        </div>
+
+
+                        <p class="ability-description">
+                            {{ ability.description }}
+                        </p>
+
+
+                        <div class="ability-stats">
+
+                            {% if ability.cost %}
+                                <span class="ability-stat">
+                                    هزینه: {{ ability.cost }}
+                                </span>
+                            {% endif %}
+
+                            {% if ability.cooldown %}
+                                <span class="ability-stat">
+                                    کولداون: {{ ability.cooldown }}
+                                </span>
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Keyboard Key -->
+
+                    <div class="ability-key">
+                        {{ ability.key }}
+                    </div>
+
+                </article>
+
+            {% empty %}
+
+                <p class="no-abilities">
+                    هنوز توانایی‌ای برای این چمپ ثبت نشده است.
+                </p>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         Items
+         فعلاً غیرفعال
+         ===================================================== -->
+
+    <section class="champion-items disabled-section">
+
+        <div class="section-title">
+            <span>آیتم‌ها</span>
+        </div>
+
+
+        <div class="items-row">
+
+            <div class="item-slot"></div>
+            <div class="item-slot"></div>
+            <div class="item-slot"></div>
+            <div class="item-slot"></div>
+            <div class="item-slot"></div>
+
+            <div class="item-slot item-slot--boot"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         Runes + Spells
+         فعلاً غیرفعال
+         ===================================================== -->
+
+    <section class="champion-loadout disabled-section">
+
+        <div class="loadout-column">
+
+            <h2 class="loadout-title">
+                رون‌ها
+            </h2>
+
+
+            <div class="runes-row">
+
+                <div class="rune-icon rune-icon--primary"></div>
+
+                <div class="rune-icon"></div>
+                <div class="rune-icon"></div>
+                <div class="rune-icon"></div>
+                <div class="rune-icon"></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="loadout-column">
+
+            <h2 class="loadout-title">
+                اسپل‌ها
+            </h2>
+
+
+            <div class="spells-row">
+
+                <div class="spell-icon"></div>
+                <div class="spell-icon"></div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
 
 {% endblock content %}

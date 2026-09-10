@@ -12,7 +12,7 @@
 
         <div class="champions-grid">
             {% for champion in champs %}
-            <a href="{% url 'ChampionPage' champion.pk %}" class="champion-card">
+            <a href="{% url 'ChampionPage' champion.slug %}" class="champion-card">
                 <div class="card-image-wrapper">
                     {% if champion.image_url %}
                     <img src="{{ champion.image_url }}" alt="{{ champion.name }}" class="champion-img">
