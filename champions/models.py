@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils.text import slugify
 
 
 class ChampionRole(models.Model):
@@ -19,6 +19,14 @@ class ChampionRole(models.Model):
 class Champion(models.Model):
 
     name = models.CharField(max_length=128, unique=True)
+    slug = models.SlugField(blank=True, unique=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+
+        super().save(*args, **kwargs)
+
     name_parsi = models.CharField(max_length=128)
     title = models.CharField(max_length=256)
     title_parsi = models.CharField(max_length=256)

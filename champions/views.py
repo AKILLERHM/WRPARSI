@@ -15,9 +15,9 @@ def champions_view(request):
     return render(request, "champions/champions.html", context)
 
 
-def champion_page(request, pk):
+def champion_page(request, slug):
 
-    champion = get_object_or_404(Champion, pk=pk)
+    champion = Champion.objects.get(slug=slug)
     context = {"champion": champion}
 
     return render(request, "champions/champion.html", context)
