@@ -18,10 +18,10 @@
     <section class="champion-hero">
 
         <!-- Background با کیفیت بالا -->
-        {% if champion.picture %}
+        {% if champion.picture_url %}
             <div
                 class="champion-hero__background"
-                style="background-image: url('{{ champion.picture.url }}');">
+                style="background-image: url('{{ champion.picture_url }}');">
             </div>
         {% endif %}
 
@@ -102,87 +102,136 @@
 
     <section class="abilities-section">
 
-        <div class="section-title">
-            <span>توانایی‌ها</span>
-        </div>
+    <div class="section-title">
+        <span>توانایی‌ها</span>
+    </div>
 
+    <div class="abilities-list">
 
-        <div class="abilities-list">
+        {% for ability in champion.abilities.all %}
 
-            {% for ability in champion.abilities.all %}
+            <article class="ability-card">
 
-                <article class="ability-card">
+                <!-- Video: سمت چپ -->
+                <div class="ability-video">
 
-                    <!-- Ability Icon -->
+                    {% if ability.video %}
 
-                    <div class="ability-icon">
-
-                        {% if ability.icon_url %}
-                            <img
-                                src="{{ ability.icon_url }}"
-                                alt="{{ ability.name }}"
+                        <video
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                            preload="metadata"
+                            {% if ability.picture %}
+                                poster="{{ ability.picture }}"
+                            {% endif %}
+                        >
+                            <source
+                                src="{{ ability.video }}"
+                                type="video/mp4"
                             >
-                        {% endif %}
 
-                    </div>
+                            مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
+                        </video>
+
+                    {% elif ability.picture %}
+
+                        <img
+                            src="{{ ability.picture }}"
+                            alt="{{ ability.name }}"
+                        >
+
+                    {% else %}
+
+                        <div class="ability-video-placeholder">
+                            ویدیویی ثبت نشده است
+                        </div>
+
+                    {% endif %}
+
+                </div>
 
 
-                    <!-- Ability Information -->
+                <!-- Information: وسط -->
+                <div class="ability-content">
 
-                    <div class="ability-content">
+                    <div class="ability-header">
 
-                        <div class="ability-header">
-
+                        <div>
                             <h2 class="ability-name">
                                 {{ ability.name }}
                             </h2>
 
-                        </div>
-
-
-                        <p class="ability-description">
-                            {{ ability.description }}
-                        </p>
-
-
-                        <div class="ability-stats">
-
-                            {% if ability.cost %}
-                                <span class="ability-stat">
-                                    هزینه: {{ ability.cost }}
-                                </span>
-                            {% endif %}
-
-                            {% if ability.cooldown %}
-                                <span class="ability-stat">
-                                    کولداون: {{ ability.cooldown }}
-                                </span>
-                            {% endif %}
-
+                            <span class="ability-type">
+                                {{ ability.get_type_display }}
+                            </span>
                         </div>
 
                     </div>
 
+                    <p class="ability-description">
+                        {{ ability.description }}
+                    </p>
 
-                    <!-- Keyboard Key -->
+                    <div class="ability-stats">
 
-                    <div class="ability-key">
-                        {{ ability.key }}
+                        {% if ability.cost %}
+                            <span class="ability-stat">
+                                هزینه: {{ ability.cost }}
+                            </span>
+                        {% endif %}
+
+                        {% if ability.cooldown %}
+                            <span class="ability-stat">
+                                کولداون: {{ ability.cooldown }}
+                            </span>
+                        {% endif %}
+
+                        {% if ability.resource_type != "none" %}
+                            <span class="ability-stat">
+                                منبع: {{ ability.get_resource_type_display }}
+                            </span>
+                        {% endif %}
+
                     </div>
 
-                </article>
+                </div>
 
-            {% empty %}
 
-                <p class="no-abilities">
-                    هنوز توانایی‌ای برای این چمپ ثبت نشده است.
-                </p>
+                <!-- Ability Picture: سمت راست -->
+                <div class="ability-icon">
 
-            {% endfor %}
+                    {% if ability.picture %}
 
-        </div>
+                        <img
+                            src="{{ ability.picture }}"
+                            alt="{{ ability.name }}"
+                        >
 
-    </section>
+                    {% else %}
+
+                        <div class="ability-icon-placeholder">
+                            ?
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+            </article>
+
+        {% empty %}
+
+            <p class="no-abilities">
+                هنوز توانایی‌ای برای این چمپ ثبت نشده است.
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+</section>
 
 
     <!-- =====================================================

@@ -32,6 +32,7 @@ class Champion(models.Model):
     title_parsi = models.CharField(max_length=256)
     description = models.TextField(blank=True)
     image_url = models.URLField(blank=True, null=True)
+    picture_url = models.URLField(blank=True, null=True)
 
 
     roles = models.ManyToManyField(ChampionRole, related_name="champions")
@@ -62,7 +63,7 @@ class Ability(models.Model):
 
     champion = models.ForeignKey(Champion,
                                  on_delete=models.CASCADE,
-                                 related_name="abiliteis")
+                                 related_name="abilities")
 
     type = models.CharField(max_length=32,
                             choices=AbilityType.choices)
@@ -70,9 +71,12 @@ class Ability(models.Model):
     name = models.CharField(max_length=128)
     picture = models.URLField(blank=True)
     video = models.URLField(blank=True)
-    cost = models.CharField(max_length=128)
-    cooldown = models.CharField(max_length=128)
+    cost = models.CharField(max_length=128, blank=True)
+    cooldown = models.CharField(max_length=128, blank=True)
     description = models.TextField()
 
     resource_type = models.CharField(max_length=32,
                                      choices=ResourceTypr.choices)
+
+    def __str__(self):
+         return f" {self.champion} --- {self.type} ---{self.name}"
