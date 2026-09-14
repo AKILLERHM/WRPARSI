@@ -190,6 +190,15 @@ section {
   padding: 3.5rem 2.5rem;
 }
 
+/*  رنگ بندی استت های توی توضیحات (مثل ابیلیتی یا آیتم یا رون) */
+
+.stat-ad { color: #E67E22 ; font-weight: 700; }   /*  AD---نارنجی*/
+.stat-ap {color: #9B59B6; font-weight: 700; }    /* AP---بنفش */
+.stat-heal {color: #2ECC71; font-weight: 700; } /* HP---سبز */
+.stats-ms {color: #D3D3D3; font-weight: 700; }  /* MS---خاکستری روشن */
+.stat-true-dmg {color: #F9F6EE; font-weight: 700; } /* TRUE_DAMAGE---سفید */
+.stat_as {color: #FFFF8F ; font-weight: 700; }  /* AS---زرد */ 
+
 footer {
   background: var(--color-nav-bg);
   color: var(--c-light);
