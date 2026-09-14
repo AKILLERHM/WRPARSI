@@ -4,7 +4,7 @@ from django.utils.text import slugify
 
 class ChampionRole(models.Model):
 
-    code = models.CharField(max_length=5, unique=True)
+    code = models.CharField(max_length=4, unique=True)
     name = models.CharField(max_length=64)
     icon_url = models.URLField(blank=True, null=True)
 
@@ -80,3 +80,34 @@ class Ability(models.Model):
 
     def __str__(self):
          return f" {self.champion} --- {self.type} ---{self.name}"
+
+
+class ItemType(models.Model):
+
+    name = models.CharField(max_length=32)
+    code = models.CharField(max_length=8, unique=True)
+
+    class Meta:
+         verbose_name = "Type"
+         verbose_name_plural = "Types"
+
+    def __str__(self):
+        return self.name 
+
+
+class Item(models.Model):
+
+     name = models.CharField(max_length=64, unique=True)
+     slug = models.SlugField(blank=True, null=True)
+
+     def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+
+        super().save(*args, **kwargs)
+     
+     price = models.IntegerField()
+     image_url = models.URLField(blank=True)
+     description = models.TextField()
+
+     type = models.ManyToManyField(ItemType, related_name="items")

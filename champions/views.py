@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from champions.models import Champion
+from django.shortcuts import render, get_object_or_404
+from champions.models import Champion , Item
 from django.db.models import Q
 
 
@@ -38,3 +38,34 @@ def champion_page(request, slug):
     context = {"champion": champion}
 
     return render(request, "champions/champion.html", context)
+
+
+def items_page(request):
+
+    items = Item.objects.all()
+    context = {"items": items}
+
+    return render(request, "champions/items.html", context)
+
+
+def item_search(request):
+
+    query = request.GET.get("q", "").strip()
+
+    if not query:
+        items = Item.objects.all()
+    else:
+        items = Item.objects.filter(
+        Q(name__icontains=query)
+        )
+    context = {"items": items}
+
+    return render(request, "partials/item_search.html", context)
+
+
+def item_page(request, slug):
+
+    item = get_object_or_404(Item, slug=slug)
+    context = {"item": item}
+
+    return render(request, "partials/item_page.html", context)

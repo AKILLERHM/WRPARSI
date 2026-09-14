@@ -1,0 +1,60 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block extra_head %}
+
+<link
+    rel="stylesheet"
+    href="{% static 'style/items.css' %}"
+>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="items-page">
+
+    <h1 class="page-title">
+        لیست آیتم‌ها
+    </h1>
+
+
+    <!-- Search Bar -->
+    <div class="item-search">
+
+        <input
+            type="text"
+            name="q"
+            placeholder="جستجوی آیتم..."
+            hx-get="{% url 'ItemSearch' %}"
+            hx-trigger="keyup changed delay:300ms"
+            hx-target="#items-results"
+            hx-swap="innerHTML"
+            autocomplete="off"
+        >
+
+    </div>
+
+
+    <!-- Item Cards -->
+    <div
+        class="items-grid"
+        id="items-results"
+    >
+
+        {% include "partials/item_cards.html" %}
+
+    </div>
+
+
+    <!-- Item Detail Modal Target -->
+    <div
+        id="item-modal"
+        class="item-modal-container"
+    >
+    </div>
+
+</div>
+
+{% endblock content %}
