@@ -1,409 +1,251 @@
-/* =========================================================
-   Items Page
-   ========================================================= */
+/* ==========================================================================
+   Items Page Styles — items.css
+   ========================================================================== */
 
-.items-page {
-    width: 100%;
-    max-width: 1100px;
-
-    margin: 0 auto;
-    padding: 2rem 2rem 4rem;
-
-    direction: rtl;
+.items-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
 }
 
+.page-title {
+  text-align: center;
+  color: var(--color-heading, #0C969C);
+  margin-bottom: 1.8rem;
+  font-size: 2rem;
+  font-weight: 900;
+}
 
-/* =========================================================
-   Search
-   ========================================================= */
+/* ---------- جعبه جستجو ---------- */
 
 .item-search {
-    display: flex;
-    justify-content: center;
-
-    width: 100%;
-
-    margin-top: 3rem;
-    margin-bottom: 3rem;
+  max-width: 420px;
+  margin: 0 auto 2.5rem;
 }
 
 .item-search input {
-    width: 100%;
-    max-width: 520px;
-
-    padding: 0.95rem 1.2rem;
-
-    border: 1px solid var(--color-surface-border);
-    border-radius: 12px;
-
-    outline: none;
-
-    background: var(--color-surface);
-    color: var(--color-text);
-
-    font-family: inherit;
-    font-size: 1rem;
-
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.item-search input::placeholder {
-    color: var(--color-text-muted);
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-surface-border, #274D60);
+  background: var(--c-dark, #032F30);
+  color: var(--color-text, #6BA3BE);
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s ease;
 }
 
 .item-search input:focus {
-    border-color: var(--c-cyan);
-
-    box-shadow:
-        0 0 0 3px color-mix(
-            in srgb,
-            var(--c-cyan) 18%,
-            transparent
-        );
+  border-color: var(--c-cyan, #0C969C);
 }
 
+.item-search input::placeholder {
+  color: var(--color-text-muted, #0A7075);
+}
 
-/* =========================================================
-   Items Grid
-   ========================================================= */
+/* ---------- بخش‌های دسته‌بندی‌شده (فیزیکال، مجیکال، دفنسیو، ...) ---------- */
+
+.item-type-section {
+  margin-bottom: 2.8rem;
+}
+
+.item-type-section__title {
+  color: var(--color-heading, #0C969C);
+  font-size: 1.15rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-surface-border, #274D60);
+}
+
+/* ---------- گرید آیتم‌ها ---------- */
 
 .items-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(auto-fill, minmax(180px, 1fr));
-
-    gap: 1.2rem;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 1.2rem;
 }
-
-
-/* =========================================================
-   Item Card
-   ========================================================= */
 
 .item-card {
-    display: flex;
-    flex-direction: column;
-
-    min-width: 0;
-
-    padding: 0;
-
-    overflow: hidden;
-
-    border: 1px solid var(--color-surface-border);
-    border-radius: 14px;
-
-    background: var(--color-surface);
-    color: var(--color-text);
-
-    font-family: inherit;
-
-    cursor: pointer;
-    text-align: right;
-
-    transition:
-        transform 0.2s ease,
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  background: var(--c-dark, #032F30);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 4px 12px var(--color-shadow, rgba(0,0,0,0.3));
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.item-card:hover {
-    transform: translateY(-4px);
-
-    border-color: var(--c-cyan);
-
-    box-shadow:
-        0 12px 28px var(--color-shadow);
-}
-
+.item-card:hover,
 .item-card:focus-visible {
-    outline: 3px solid var(--c-cyan);
-    outline-offset: 3px;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(12, 150, 156, 0.3);
+  outline: none;
 }
 
-
-/* =========================================================
-   Item Image
-   ========================================================= */
-
-.item-card-image {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-
-    overflow: hidden;
-
-    background: var(--c-darkest);
+.item-card__image-wrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.04);
 }
 
-.item-card-image img {
-    display: block;
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    transition: transform 0.25s ease;
+.item-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 0.4rem;
 }
 
-.item-card:hover .item-card-image img {
-    transform: scale(1.06);
+.item-card__info {
+  background: var(--c-cyan, #0C969C);
+  padding: 0.5rem 0.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.15rem;
 }
 
-.item-image-placeholder {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    width: 100%;
-    height: 100%;
-
-    color: var(--color-text-muted);
-
-    font-size: 0.85rem;
+.item-card__name {
+  color: #ffffff;
+  font-weight: 900;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
-
-/* =========================================================
-   Card Content
-   ========================================================= */
-
-.item-card-content {
-    display: flex;
-    flex-direction: column;
-
-    gap: 0.6rem;
-
-    padding: 1rem;
+.item-card__price {
+  color: #FFE9A8;
+  font-size: 0.7rem;
+  font-weight: 700;
 }
 
-.item-card-name {
-    margin: 0;
-
-    color: var(--color-heading);
-
-    font-size: 1rem;
-    font-weight: 800;
-}
-
-.item-card-price {
-    margin-top: auto;
-
-    color: var(--color-text-muted);
-
-    font-size: 0.8rem;
-    font-weight: 700;
-}
-
-.no-items {
-    grid-column: 1 / -1;
-
-    color: var(--color-text-muted);
-
-    text-align: center;
-}
-
-
-/* =========================================================
-   Modal Container
-   ========================================================= */
-
-.item-modal-container {
-    position: relative;
-    z-index: 100;
-}
-
-
-/* =========================================================
-   Modal Backdrop
-   ========================================================= */
+/* ---------- مودال جزئیات آیتم ---------- */
 
 .item-modal-backdrop {
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 1000;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    padding: 1.5rem;
-
-    background: rgba(0, 0, 0, 0.72);
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 23, 22, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  z-index: 1000;
+  animation: item-modal-fade-in 0.15s ease;
 }
 
-
-/* =========================================================
-   Item Detail Panel
-   ========================================================= */
-
-.item-detail-panel {
-    display: grid;
-
-    grid-template-columns:
-        minmax(180px, 0.8fr)
-        minmax(0, 1.4fr);
-
-    width: 100%;
-    max-width: 720px;
-
-    max-height: 85vh;
-
-    overflow: hidden;
-
-    border: 1px solid var(--color-surface-border);
-    border-radius: 16px;
-
-    background: var(--color-surface);
-
-    box-shadow:
-        0 25px 70px rgba(0, 0, 0, 0.5);
+@keyframes item-modal-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-
-/* =========================================================
-   Modal Image
-   ========================================================= */
-
-.item-detail-image {
-    min-height: 260px;
-
-    overflow: hidden;
-
-    background: var(--c-darkest);
+.item-modal {
+  position: relative;
+  background: var(--color-surface, #032F30);
+  border: 1px solid var(--color-surface-border, #274D60);
+  border-radius: 12px;
+  max-width: 480px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 1.8rem;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
 }
 
-.item-detail-image img {
-    display: block;
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
+.item-modal__close {
+  position: absolute;
+  top: 0.7rem;
+  left: 0.7rem;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-text, #6BA3BE);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
 }
 
-
-/* =========================================================
-   Modal Content
-   ========================================================= */
-
-.item-detail-content {
-    display: flex;
-    flex-direction: column;
-
-    min-width: 0;
-
-    padding: 1.6rem;
-
-    direction: rtl;
+.item-modal__close:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
-.item-detail-name {
-    margin: 0;
-
-    color: var(--color-heading);
-
-    font-size: 1.6rem;
-    font-weight: 900;
+.item-modal__header {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1.2rem;
 }
 
-.item-detail-price {
-    margin-top: 1rem;
+.item-modal__img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 0.4rem;
+  flex-shrink: 0;
+}
 
-    color: var(--c-cyan);
+.item-modal__name {
+  color: var(--color-heading, #0C969C);
+  font-size: 1.2rem;
+  margin-bottom: 0.2rem;
+}
 
+.item-modal__price {
+  color: #FFE9A8;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+}
+
+.item-modal__types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.item-type-badge {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-text-muted, #6BA3BE);
+  font-size: 0.7rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+}
+
+.item-modal__desc {
+  color: var(--color-text, #6BA3BE);
+  line-height: 1.9;
+}
+
+/* ---------- ریسپانسیو ---------- */
+
+@media (max-width: 900px) {
+  .items-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .items-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.7rem;
+  }
+
+  .item-card__name {
+    font-size: 0.65rem;
+  }
+
+  .item-type-section__title {
     font-size: 1rem;
-    font-weight: 800;
-}
-
-.item-detail-description {
-    margin: 1.2rem 0;
-
-    color: var(--color-text);
-
-    font-size: 0.95rem;
-    line-height: 2;
-}
-
-
-/* =========================================================
-   Close Button
-   ========================================================= */
-
-.item-close-button {
-    width: 100%;
-
-    margin-top: auto;
-
-    padding: 0.8rem 1rem;
-
-    border: 1px solid var(--c-cyan);
-    border-radius: 10px;
-
-    background: var(--c-teal);
-    color: var(--c-light);
-
-    font-family: inherit;
-    font-size: 0.9rem;
-    font-weight: 800;
-
-    cursor: pointer;
-
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
-}
-
-.item-close-button:hover {
-    background: var(--c-cyan);
-
-    transform: translateY(-2px);
-}
-
-
-/* =========================================================
-   Responsive
-   ========================================================= */
-
-@media (max-width: 700px) {
-
-    .items-page {
-        padding: 1.5rem 1rem 3rem;
-    }
-
-    .items-grid {
-        grid-template-columns:
-            repeat(auto-fill, minmax(145px, 1fr));
-
-        gap: 0.8rem;
-    }
-
-    .item-detail-panel {
-        grid-template-columns: 1fr;
-
-        max-height: 90vh;
-
-        overflow-y: auto;
-    }
-
-    .item-detail-image {
-        min-height: 180px;
-        max-height: 220px;
-    }
-
-    .item-detail-content {
-        padding: 1.2rem;
-    }
-
-    .item-detail-name {
-        font-size: 1.3rem;
-    }
-
+  }
 }

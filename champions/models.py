@@ -54,7 +54,7 @@ class Ability(models.Model):
         THIRD = "third", "Third Ability"
         ULTIMATE = "ultimate", "Ultimate"
 
-    class ResourceTypr(models.TextChoices):
+    class ResourceType(models.TextChoices):
 
          MANA = "mana", "Mana"
          ENERGY = "energy", "Energy"
@@ -76,38 +76,52 @@ class Ability(models.Model):
     description = models.TextField()
 
     resource_type = models.CharField(max_length=32,
-                                     choices=ResourceTypr.choices)
+                                     choices=ResourceType.choices)
 
     def __str__(self):
-         return f" {self.champion} --- {self.type} ---{self.name}"
+         return f"{self.champion} --- {self.type} ---{self.name}"
 
 
 class ItemType(models.Model):
 
-    name = models.CharField(max_length=32)
-    code = models.CharField(max_length=8, unique=True)
+    class Code(models.TextChoices):
 
-    class Meta:
-         verbose_name = "Type"
-         verbose_name_plural = "Types"
+        BASIC = "basic", "Basic"
+        MID_LEVEL = "mid_level", "Mid level"
+        PHYSICLA = "physical", "Physical"
+        MAGICAL = "magical", "Magical"
+        DEFENSIVE = "defensive", "Defensive"
+        SUPPORT = "support", "Support"
+        BOOT1 = "tier_1", "Tier 1"
+        BOOT2 = "tier_2", "Tier 2"
+        BOOT3 = "tier_3", "Tier 3"
+
+    code = models.CharField(max_length=16, choices=Code.choices, blank=True)
 
     def __str__(self):
-        return self.name 
+        return self.get_code_display()
 
 
 class Item(models.Model):
 
-     name = models.CharField(max_length=64, unique=True)
-     slug = models.SlugField(blank=True, null=True)
+    name = models.CharField(max_length=64, unique=True)
+    slug = models.SlugField(blank=True, null=True)
 
-     def save(self, *args, **kwargs):
+    def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
 
         super().save(*args, **kwargs)
      
-     price = models.IntegerField()
-     image_url = models.URLField(blank=True)
-     description = models.TextField()
+    price = models.IntegerField()
+    image_url = models.URLField(blank=True)
+    description = models.TextField(blank=True)
+    stats = models.TextField(blank=True)
 
-     type = models.ManyToManyField(ItemType, related_name="items")
+
+    type = models.ManyToManyField(ItemType, related_name="items")
+     
+
+
+    def __str__(self):
+        return self.name

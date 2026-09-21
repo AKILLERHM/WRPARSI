@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from champions.models import Champion , Item
+from champions.models import Champion , Item, ItemType
 from django.db.models import Q
 
 
@@ -42,8 +42,8 @@ def champion_page(request, slug):
 
 def items_page(request):
 
-    items = Item.objects.all()
-    context = {"items": items}
+    item_types = ItemType.objects.prefetch_related("items").all()
+    context = {"item_types": item_types}
 
     return render(request, "champions/items.html", context)
 

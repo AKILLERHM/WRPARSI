@@ -2,59 +2,43 @@
 {% load static %}
 
 {% block extra_head %}
-
-<link
-    rel="stylesheet"
-    href="{% static 'style/items.css' %}"
->
-
+<link rel="stylesheet" href="{% static 'style/items.css' %}">
 {% endblock %}
-
 
 {% block content %}
 
-<div class="items-page">
+    <div class="items-container">
+        <h1 class="page-title">لیست آیتم‌ها</h1>
 
-    <h1 class="page-title">
-        لیست آیتم‌ها
-    </h1>
+        <div class="item-search">
+            <input
+                type="text"
+                name="q"
+                placeholder="جستجوی آیتم..."
+                hx-get="{% url 'ItemSearch' %}"
+                hx-trigger="keyup changed delay:300ms"
+                hx-target="#items-results"
+                hx-swap="innerHTML"
+                autocomplete="off"
+            >
+        </div>
 
-
-    <!-- Search Bar -->
-    <div class="item-search">
-
-        <input
-            type="text"
-            name="q"
-            placeholder="جستجوی آیتم..."
-            hx-get="{% url 'ItemSearch' %}"
-            hx-trigger="keyup changed delay:300ms"
-            hx-target="#items-results"
-            hx-swap="innerHTML"
-            autocomplete="off"
-        >
-
+        <div id="items-results">
+            {% include "partials/item_sections.html" %}
+        </div>
     </div>
 
-
-    <!-- Item Cards -->
-    <div
-        class="items-grid"
-        id="items-results"
-    >
-
-        {% include "partials/item_cards.html" %}
-
-    </div>
-
-
-    <!-- Item Detail Modal Target -->
-    <div
-        id="item-modal"
-        class="item-modal-container"
-    >
-    </div>
-
-</div>
+    <!-- htmx محتوای مودال جزئیات آیتم رو با کلیک روی هر کارت، اینجا لود می‌کنه -->
+    <div id="item-modal-root"></div>
 
 {% endblock content %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+            document.getElementById('item-modal-root').innerHTML = '';
+        }
+    });
+</script>
+{% endblock %}

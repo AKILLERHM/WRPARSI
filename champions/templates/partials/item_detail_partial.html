@@ -1,0 +1,24 @@
+<div class="item-modal-backdrop" onclick="document.getElementById('item-modal-root').innerHTML='' ">
+    <div class="item-modal" onclick="event.stopPropagation()">
+        <button type="button" class="item-modal__close"
+                onclick="document.getElementById('item-modal-root').innerHTML='' "
+                aria-label="بستن">&times;</button>
+
+        <div class="item-modal__headre">
+            {% if item.image_url %}
+                <img src="{{item.image_url}}" alt="{{ item.name }}" class="item-modal">
+            {% endif %}
+            <div class="item-modal__header-text">
+                <h2 class="item-modal__header-text">{{ item.name }}</h2>
+                {% if item.price %}<p class="item-modal__price">{{ item.price }} :هزینه</p>{% endif %}
+                <div class="item-modal__types">
+                    {% for t in item.type.all %}
+                        <span class="item-type-badge">{{ t.get_code_display }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <p class="item-modal__desc rich-text">{{item.description|safe}}</p>
+    </div>
+</div>
