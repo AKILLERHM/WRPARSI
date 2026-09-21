@@ -1,6 +1,6 @@
 <div class="item-card"
      hx-get="{% url 'ItemDetail' item.slug %}"
-     hx-target="#item-model-root"
+     hx-target="#item-modal-root"
      hx-swap="innerHTML"
      hx-trigger="click, keyup[key=='Enter']"
      role="button"
@@ -12,7 +12,7 @@
         {% endif %}
      </div>
      <div class="item-card__info">
-        <span class="item_crad__name">{{ item.name }}</span>
+        <span class="item-card__name">{{ item.name }}</span>
         {% if item.price %}<span class="item-card__price">{{ item.price }}G</span>{% endif %}
      </div>
 </div>

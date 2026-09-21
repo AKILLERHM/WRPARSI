@@ -3,7 +3,7 @@
    ========================================================================== */
 
 .items-container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 2rem auto;
   padding: 0 1.5rem;
 }
@@ -65,17 +65,20 @@
 
 .items-grid {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  gap: 1.2rem;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  gap: 0.8rem;
 }
 
 .item-card {
+  width: 100%;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   background: var(--c-dark, #032F30);
   border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
+  border: none;
   box-shadow: 0 4px 12px var(--color-shadow, rgba(0,0,0,0.3));
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -95,26 +98,27 @@
 }
 
 .item-card__img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: contain;
-  padding: 0.4rem;
+  padding: 0.35rem;
 }
 
 .item-card__info {
+  min-width: 0;
   background: var(--c-cyan, #0C969C);
-  padding: 0.5rem 0.6rem;
+  padding: 0.45rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 0.15rem;
 }
 
 .item-card__name {
   color: #ffffff;
   font-weight: 900;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -123,7 +127,7 @@
 
 .item-card__price {
   color: #FFE9A8;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 700;
 }
 
@@ -229,17 +233,29 @@
 
 /* ---------- ریسپانسیو ---------- */
 
+@media (max-width: 1200px){
+  .items-grid{
+    grid-template-columns: repeat(8,minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 900px) {
   .items-grid {
     grid-template-columns: repeat(6, 1fr);
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
   .items-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.7rem;
+    grid-template-columns: repeat(4, minmX(0, 1fr));
+    gap: 0.6rem;
   }
+
+@media (max-width: 450px){
+  .items-grid{
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
 
   .item-card__name {
     font-size: 0.65rem;

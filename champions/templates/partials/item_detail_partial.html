@@ -4,12 +4,12 @@
                 onclick="document.getElementById('item-modal-root').innerHTML='' "
                 aria-label="بستن">&times;</button>
 
-        <div class="item-modal__headre">
+        <div class="item-modal__header">
             {% if item.image_url %}
-                <img src="{{item.image_url}}" alt="{{ item.name }}" class="item-modal">
+                <img src="{{ item.image_url }}" alt="{{ item.name }}" class="item-modal__img">
             {% endif %}
             <div class="item-modal__header-text">
-                <h2 class="item-modal__header-text">{{ item.name }}</h2>
+                <h2 class="item-modal__name">{{ item.name }}</h2>
                 {% if item.price %}<p class="item-modal__price">{{ item.price }} :هزینه</p>{% endif %}
                 <div class="item-modal__types">
                     {% for t in item.type.all %}

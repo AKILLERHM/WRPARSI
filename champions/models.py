@@ -21,6 +21,7 @@ class Champion(models.Model):
     name = models.CharField(max_length=128, unique=True)
     slug = models.SlugField(blank=True, unique=True)
 
+    #اگر زمانی نامی ساختیم بطور خودکار حالت slug ان دخیره میشود.
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
@@ -34,7 +35,8 @@ class Champion(models.Model):
     image_url = models.URLField(blank=True, null=True)
     picture_url = models.URLField(blank=True, null=True)
 
-
+    #هر چمپی ممکن است در لین های متفاوتی بازی کند
+    # از این مدل برای روابط بین چمپ و لین استفاده کردم 
     roles = models.ManyToManyField(ChampionRole, related_name="champions")
 
     class Meta:
@@ -46,6 +48,8 @@ class Champion(models.Model):
 
 class Ability(models.Model):
 
+    """ به این دلیل که نوع و منبع توانایی ها خاص هستند، یعنی اینکه تنها 
+    یک مقدار دارند یا مقداری ندارند، بنابراین از یک حالت انتخابی استفاده شده است"""
     class AbilityType(models.TextChoices):
 
         PASSIVE = "passive", "Passive"
@@ -61,6 +65,8 @@ class Ability(models.Model):
          HEALTH = "health", "Health"
          NONE = "none", "None"
 
+    """ هر توانایی بطور خاص به چمپ مورد نظرش وصل شده 
+    و اگر زمانی چمپی حدف شود، توانایی های مربوط به آن هم حذف خواهد شد"""
     champion = models.ForeignKey(Champion,
                                  on_delete=models.CASCADE,
                                  related_name="abilities")
