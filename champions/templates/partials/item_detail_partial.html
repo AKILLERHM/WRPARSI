@@ -10,10 +10,10 @@
             {% endif %}
             <div class="item-modal__header-text">
                 <h2 class="item-modal__name">{{ item.name }}</h2>
-                {% if item.price %}<p class="item-modal__price">{{ item.price }} :هزینه</p>{% endif %}
+                {% if item.price %}<p class="item-modal__price">هزینه: {{ item.price }}</p>{% endif %}
                 <div class="item-modal__types">
-                    {% for t in item.type.all %}
-                        <span class="item-type-badge">{{ t.get_code_display }}</span>
+                    {% for item_type in item.type.all %}
+                        <span class="item-type-badge">{{ item_type.get_code_display }}</span>
                     {% endfor %}
                 </div>
             </div>

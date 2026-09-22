@@ -68,4 +68,4 @@ def item_page(request, slug):
     item = get_object_or_404(Item, slug=slug)
     context = {"item": item}
 
-    return render(request, "partials/item_page.html", context)
+    return render(request, "partials/item_detail_partial.html", context)
