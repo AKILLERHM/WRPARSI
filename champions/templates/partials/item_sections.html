@@ -3,7 +3,7 @@
         {% if type_items %}
         <section class="item-type-section">
             <h2 class="item-type-section__title">{{ item_type.get_code_display }}</h2>
-            <div class="item-grid">
+            <div class="items-grid">
                 {% for item in type_items %}
                     {% include "partials/item_card.html" %}
                 {% endfor %}

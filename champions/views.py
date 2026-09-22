@@ -60,7 +60,7 @@ def item_search(request):
         )
     context = {"items": items}
 
-    return render(request, "partials/item_search.html", context)
+    return render(request, "partials/item_search_results.html", context)
 
 
 def item_page(request, slug):
