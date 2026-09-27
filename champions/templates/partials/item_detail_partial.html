@@ -11,14 +11,74 @@
             <div class="item-modal__header-text">
                 <h2 class="item-modal__name">{{ item.name }}</h2>
                 {% if item.price %}<p class="item-modal__price">هزینه: {{ item.price }}</p>{% endif %}
-                <div class="item-modal__types">
-                    {% for item_type in item.type.all %}
-                        <span class="item-type-badge">{{ item_type.get_code_display }}</span>
-                    {% endfor %}
-                </div>
+                
+                {% with types=item.type.all %}
+                    {% if types %}
+                        <div class="item-modal__types">
+                            {% for item_type in types %}
+                                <span class="item-type-badge">
+                                    {{ item_type.get_code_display }}
+                                </span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+
             </div>
         </div>
 
-        <p class="item-modal__desc rich-text">{{item.description|safe}}</p>
+        <!-- stat + buildpath-->
+        <div class="item-modal__info-grid">
+
+            <!-- stats -->
+            {% if item.stats %}
+                <section class="item-modal__panel">
+                    
+                    <h3 class="item-modal__panel-title">
+                        Stats
+                    </h3>
+
+                    <div class="item-modal__panel-content item-modal__stats">
+                        {{ item.stats|safe }}
+                    </div>
+
+                </section>
+            {% endif %}
+
+            <!-- build path -->
+            {% with build_paths=item.build_paths.all %}
+                {% if build_paths %}
+
+                    <section class="item-modal__panel">
+
+                        <h3 class="item-modal__panel-title">
+                            Build Path
+                        </h3>
+
+                        <div class="item-modal__panel-content build-tree">
+                            {% include "partials/build_node.html" with item=item %}
+                        </div>
+
+                    </section>
+                {% endif %}
+            {% endwith %}
+
+        </div>
+
+        <!-- description -->
+        {% if item.description %}
+            <section class="item-modal__description-panel">
+
+                <h3  class="item-modal__panel-title">
+                    Description
+                </h3>
+
+                <div class="item-modal__desc rich-text">
+                    {{ item.description|safe }}
+                </div>
+
+            </section>
+        {% endif %}
+
     </div>
 </div>

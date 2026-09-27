@@ -53,14 +53,25 @@ def item_search(request):
     query = request.GET.get("q", "").strip()
 
     if not query:
-        items = Item.objects.all()
+        item_types = ItemType.objects.prefetch_related("items").all()
+
+        return render(request, "partials/item_sections.html",
+                      {
+                          "item_types": item_types,
+                          }
+                          )
     else:
+
         items = Item.objects.filter(
         Q(name__icontains=query)
         )
-    context = {"items": items}
+    
 
-    return render(request, "partials/item_search_results.html", context)
+    return render(request, "partials/item_search_results.html", 
+                  {
+                      "items": items,
+                      "query": query,
+                  })
 
 
 def item_page(request, slug):

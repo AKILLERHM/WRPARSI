@@ -93,14 +93,16 @@ class ItemType(models.Model):
     class Code(models.TextChoices):
 
         BASIC = "basic", "Basic"
-        MID_LEVEL = "mid_level", "Mid level"
-        PHYSICLA = "physical", "Physical"
-        MAGICAL = "magical", "Magical"
-        DEFENSIVE = "defensive", "Defensive"
+        MID_LEVEL = "mid_tier", "Mid tier"
+        FIGHTER = "fighter", "Fighter"
+        ASSASSIN = "assassin", "Assassin"
+        MARKSMAN = "marksman", "Marksman"
+        MAGIC = "magic", "Magic"
+        DEFENSE = "defense", "Defense"
         SUPPORT = "support", "Support"
-        BOOT1 = "tier_1", "Tier 1"
-        BOOT2 = "tier_2", "Tier 2"
-        BOOT3 = "tier_3", "Tier 3"
+        BOOT1 = "basic_boot", "Basic boot"
+        BOOT2 = "mid_tier_boot", "Mid_tier_boot"
+        BOOT3 = "upgraded", "Upgraded"
 
     code = models.CharField(max_length=16, choices=Code.choices, blank=True)
 
@@ -130,4 +132,21 @@ class Item(models.Model):
 
 
     def __str__(self):
-        return self.name
+        return f"{self.name}"
+
+
+class ItemBuildPath(models.Model):
+
+     item = models.ForeignKey( Item, on_delete=models.CASCADE, 
+                              related_name="build_paths",)
+
+     component = models.ForeignKey(Item, on_delete=models.CASCADE, 
+                                   related_name="used_in_builds")
+
+     order = models.PositiveIntegerField(default=0)
+
+     class Meta:
+        ordering = ["order"]
+
+     def __str__(self):
+        return f"{self.component.name} --> {self.item.name}"

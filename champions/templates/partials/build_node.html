@@ -1,0 +1,40 @@
+<div class="build_node">
+
+    {% if item.image_url %}
+        <img src="{{ item.image_yrl }}" alt="{{ item.name }}" class="build-node__image">
+    {% endif %}
+
+    {% if item.price %}
+        <span class="build-node__price">
+            {{ item.price }}
+        </span>
+    {% endif %}
+
+    <span class="build-node__name">
+        {{ item.name }}
+    </span>
+
+</div>
+
+
+{% with children=item.build_paths.all %}
+
+    {% if children %}
+
+        <div class="build_children">
+
+            {% for build in children %}
+
+                <div class="build-branch">
+
+                    {% include "partials/build_node.html" with item=build.component %}
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% endif %}
+
+{% endwith %}
