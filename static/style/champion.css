@@ -344,18 +344,12 @@
 .ability-card {
     display: grid;
 
-    /*
-       سمت چپ: ویدیو
-       وسط: اطلاعات
-       سمت راست: عکس
-    */
     grid-template-columns:
         260px
-        minmax(0, 1fr)
-        78px;
+        minmax(0, 1fr);
 
     grid-template-areas:
-        "video content icon";
+        "video content";
 
     align-items: stretch;
 
@@ -469,15 +463,18 @@
 
 .ability-header {
     display: flex;
-
+    flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
-
     gap: 1rem;
+    direction: ltr;
+}
 
-    padding-bottom: 0.8rem;
-
-    border-bottom: 1px solid var(--color-surface-border);
+.ability-header__text {
+    flex: 1;
+    min-width: 0;
+    direction: rtl;
+    text-align: left;
 }
 
 .ability-name {
@@ -485,14 +482,18 @@
 
     color: var(--color-heading);
 
+    text-align: right;
+
     font-size: 1.2rem;
     font-weight: 800;
 }
 
 .ability-type {
-    display: inline-block;
+    display: block;
 
-    margin-top: 0.3rem;
+    margin-top: 0.35rem;
+
+    text-align: right;
 
     color: var(--color-text-muted);
 
@@ -545,22 +546,11 @@
    ========================================================= */
 
 .ability-icon {
-    grid-area: icon;
-
-    align-self: start;
-    justify-self: center;
-
-    width: 64px;
-    height: 64px;
-
-    margin-top: 1.2rem;
-
-    overflow: hidden;
-
-    border: 2px solid var(--color-surface-border);
-    border-radius: 10px;
-
-    background: var(--c-darkest);
+    position: static;
+    flex: 0 0 56px;
+    width: 56px;
+    height: 56px;
+    margin: 0;
 }
 
 .ability-icon img {
@@ -569,7 +559,9 @@
     width: 100%;
     height: 100%;
 
-    object-fit: cover;
+    object-fit: contain;
+
+    border-radius: 6px;
 }
 
 .ability-icon-placeholder {
@@ -827,41 +819,41 @@
 
     .ability-card {
         grid-template-columns: 1fr;
-
         grid-template-areas:
-            "icon"
             "video"
             "content";
     }
 
-    .ability-icon {
-        justify-self: end;
-
-        width: 64px;
-        height: 64px;
-
-        margin: 1rem 1rem 0 0;
-    }
-
-    .ability-video {
-        min-height: 190px;
-    }
-
-    .ability-video video,
-    .ability-video img {
-        min-height: 190px;
-    }
-
     .ability-content {
         padding: 1rem;
+        min-width: 0;
     }
 
-    .ability-name {
-        font-size: 1.1rem;
+    .ability-header {
+        gap: 0.75rem;
+        direction: ltr;
+        align-items: left;
+    }
+
+    .ability-header__text {
+        direction: rtl;
+        text-align: left;
+    }
+
+    .ability-name,
+    .ability-type {
+        text-align: right;
+    }
+
+    .ability-icon {
+        
+        flex: 0 0 56px;
+        width: 56px;
+        height: 56px;
     }
 
     .ability-description {
-        font-size: 0.85rem;
+        width: 100%;
     }
 
     .champion-loadout {

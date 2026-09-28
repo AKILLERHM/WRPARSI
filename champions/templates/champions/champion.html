@@ -157,17 +157,23 @@
                 <div class="ability-content">
 
                     <div class="ability-header">
-
-                        <div>
+                        <div class="ability-header__text">
                             <h2 class="ability-name">
                                 {{ ability.name }}
                             </h2>
-
                             <span class="ability-type">
                                 {{ ability.get_type_display }}
                             </span>
                         </div>
+                    
 
+                        <div class="ability-icon">
+                            {% if ability.picture %}
+                                <img src="{{ ability.picture }}" alt="{{ ability.name }}">
+                            {% else %}
+                                <div class="ability-icon-placeholder">?</div>
+                            {% endif %}
+                        </div>
                     </div>
 
                     <p class="ability-description">
@@ -198,26 +204,6 @@
 
                 </div>
 
-
-                <!-- Ability Picture: سمت راست -->
-                <div class="ability-icon">
-
-                    {% if ability.picture %}
-
-                        <img
-                            src="{{ ability.picture }}"
-                            alt="{{ ability.name }}"
-                        >
-
-                    {% else %}
-
-                        <div class="ability-icon-placeholder">
-                            ?
-                        </div>
-
-                    {% endif %}
-
-                </div>
 
             </article>
 
