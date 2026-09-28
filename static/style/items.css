@@ -260,11 +260,146 @@
   width: 100%;
 }
 
+/* =========================
+   Build Path
+   ========================= */
+
 .build-tree {
-  width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 1rem 0;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    padding: 0.75rem 0.25rem;
+
+    direction: ltr;
+}
+
+
+/* =========================
+   Item Node
+   ========================= */
+
+.build-node {
+    position: relative;
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    z-index: 2;
+}
+
+.build-node__image {
+    width: 40px;
+    height: 40px;
+
+    object-fit: contain;
+
+    border-radius: 5px;
+
+    display: block;
+}
+
+
+/* فقط آیتم اصلی را وسط قرار بده */
+
+.build-tree > .build-node {
+    margin-inline: auto;
+}
+
+
+/* =========================
+   Children
+   ========================= */
+
+.build-children {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    gap: 0.9rem;
+
+    margin-top: 1.5rem;
+}
+
+
+/* =========================
+   Branch
+   ========================= */
+
+.build-branch {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================
+   Vertical line
+   ========================= */
+
+.build-children::before {
+    content: "";
+
+    position: absolute;
+
+    top: -1.5rem;
+    left: 50%;
+
+    width: 1px;
+    height: 1.5rem;
+
+    background: var(--color-surface-border, #274D60);
+}
+
+
+/* =========================
+   Horizontal line
+   ========================= */
+
+.build-children::after {
+    content: "";
+
+    position: absolute;
+
+    top: -0.75rem;
+
+    left: 24px;
+    right: 24px;
+
+    height: 1px;
+
+    background: var(--color-surface-border, #274D60);
+}
+
+
+/* =========================
+   Child vertical lines
+   ========================= */
+
+.build-branch::before {
+    content: "";
+
+    position: absolute;
+
+    top: -0.75rem;
+    left: 50%;
+
+    width: 1px;
+    height: 0.75rem;
+
+    background: var(--color-surface-border, #274D60);
 }
 
 .item-modal__description-panel {
@@ -310,6 +445,42 @@
     .item-modal__panel {
         min-height: 220px;
     }
+
+    .build-tree {
+        padding: 0.5rem 0.15rem;
+    }
+
+    .build-node {
+        width: 40px;
+        height: 40px;
+    }
+
+    .build-node__image {
+        width: 34px;
+        height: 34px;
+    }
+
+    .build-children {
+        gap: 0.6rem;
+        margin-top: 1.25rem;
+    }
+
+    .build-children::before {
+        top: -1.25rem;
+        height: 1.25rem;
+    }
+
+    .build-children::after {
+        top: -0.625rem;
+        left: 20px;
+        right: 20px;
+    }
+
+    .build-branch::before {
+        top: -0.625rem;
+        height: 0.625rem;
+    }
+
 }
 
 @media (max-width: 650px) {
