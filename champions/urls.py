@@ -10,9 +10,6 @@ urlpatterns = [
     #از slug برای قشنگ تر کردن و فهمیدنی تر کردن مسیر صفحات چمپ ها کردم.
     path("ChampionPage/<slug:slug>/", views.champion_page, name="ChampionPage"),
     
-    path("Items/", views.items_page, name="ItemsPage"),
-    path("items/search/", views.item_search, name="ItemSearch"),
-    
-    path("items/<slug:slug>/detail", views.item_page, name="ItemDetail"),
+
     
 ]
