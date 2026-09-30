@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     #my apps
     'champions.apps.ChampionsConfig',
     'items.apps.ItemsConfig',
+    'runes.apps.RunesConfig'
 ]
 
 MIDDLEWARE = [
