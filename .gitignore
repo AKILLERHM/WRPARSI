@@ -1,3 +1,8 @@
+#Environment
+.env
+.env.*
+
+
 #python
 __pycache__/
 *.py[cod]
@@ -23,3 +28,6 @@ media/
 #os
 .DS_store
 Thumbs.db
+
+
+*.bundle
