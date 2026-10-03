@@ -27,4 +27,19 @@
 - HTMX
 - Git
 
-### screenshots
+## screenshots
+
+### Home Page
+![Home Page](screenshots/HomePage.png)
+
+### Champions Page
+![Champions Page](screenshots/ChampionsPage.png)
+
+### Champion Page
+![Champion Page](screenshots/ChampionPage.png)
+
+### Items Page
+![Items Page](screenshots/ItemsPage.png)
+
+### Item Page
+![Item Page](screenshots/ItemPage.png)
