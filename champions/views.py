@@ -1,10 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from champions.models import Champion 
 from django.db.models import Q
 
 
 def home(request):
-
     return render(request, "champions/home.html")
 
 

@@ -3,7 +3,8 @@ from django.utils.text import slugify
 
 
 class ChampionRole(models.Model):
-
+    #هر چمپی برای خود لین های مخصوصی دراد...چون ممکن است چمپی چند لین داشته
+    #باشد از این روش استفاده شده
     code = models.CharField(max_length=4, unique=True)
     name = models.CharField(max_length=64)
     icon_url = models.URLField(blank=True, null=True)
@@ -22,6 +23,7 @@ class Champion(models.Model):
     slug = models.SlugField(blank=True, unique=True)
 
     #اگر زمانی نامی ساختیم بطور خودکار حالت slug ان دخیره میشود.
+    #از slug برای جستجو کردن دقیق تر و نمایش بهتر لینک قهرمان ها استفاده می کنیم.
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
