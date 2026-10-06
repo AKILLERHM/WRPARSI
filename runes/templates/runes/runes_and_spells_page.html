@@ -1,3 +1,88 @@
 {% extends "main.html" %}
 {% load static %}
 
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'style/runes_and_spells.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="runes-spells-container">
+        <h1 class="page-title">رون‌ها و اسپل‌ها</h1>
+
+        <!-- ================= RUNE's ================= -->
+        <section class="runes-box">
+            <h2 class="runes-box__title">RUNE's</h2>
+
+            <!-- ردیف رون‌های اصلی (Keystone) -->
+            <div class="primary-runes-row">
+                {% for rune in primary_runes %}
+                    {% include "partials/rune_icon.html" with rune=rune %}
+                {% empty %}
+                    <p class="runes-empty">هیچ رون اصلی‌ای ثبت نشده</p>
+                {% endfor %}
+            </div>
+
+            <!-- شبکه رون‌های فرعی، دسته‌بندی‌شده -->
+            <div class="secondary-runes-grid">
+                {% for group in secondary_groups %}
+                    <div class="rune-category-column">
+                        <h3 class="rune-category-column__title">{{ group.label }}</h3>
+                        <div class="rune-category-column__icons">
+                            {% for rune in group.runes %}
+                                {% include "partials/rune_icon.html" with rune=rune %}
+                            {% empty %}
+                                <p class="runes-empty runes-empty--small">خالی</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- ================= SPELL's ================= -->
+        <section class="spells-box">
+            <h2 class="spells-box__title">SPELL's</h2>
+
+            <div class="spells-row">
+                {% for spell in spells %}
+                    <div class="spell-icon"
+                         hx-get="{% url 'SpellDetail' spell.pk %}"
+                         hx-target="#spell-detail-panel"
+                         hx-swap="innerHTML"
+                         hx-trigger="click, keyup[key=='Enter']"
+                         role="button"
+                         tabindex="0"
+                         title="{{ spell.name }}">
+                        {% if spell.img_url %}
+                            <img src="{{ spell.img_url }}" alt="{{ spell.name }}">
+                        {% endif %}
+                    </div>
+                {% empty %}
+                    <p class="runes-empty">هیچ اسپلی ثبت نشده</p>
+                {% endfor %}
+            </div>
+
+            <!-- htmx محتوای این پنل رو با کلیک روی هر اسپل، همینجا جایگزین می‌کنه -->
+            <div id="spell-detail-panel" class="spell-detail-panel">
+                <p class="spell-detail-panel__placeholder">یک اسپل را برای مشاهده جزئیات انتخاب کنید</p>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- htmx محتوای مودال جزئیات رون رو با کلیک روی هر رون، اینجا لود می‌کنه -->
+    <div id="rune-modal-root"></div>
+
+{% endblock content %}
+
+{% block extra_js %}
+<script>
+    // با زدن Esc، مودال رون (اگه بازه) بسته بشه
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+            document.getElementById('rune-modal-root').innerHTML = '';
+        }
+    });
+</script>
+{% endblock %}

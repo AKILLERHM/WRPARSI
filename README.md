@@ -53,15 +53,16 @@
 git clone https://github.com/AKILLERHM/WRPARSI.git
 cd WRPARSI
 
-pyhton -m venv .WRPvenv
+python -m venv .WRPvenv
 
 #windows
 .WRPvenv/Scripts/activate
 
 # Linux / macOS
-source .venv/bin/activate
+source .WRPvenv/bin/activate
 
 pip install -r requirements.txt
 
 python manage.py migrate
 python manage.py runserver
+```\

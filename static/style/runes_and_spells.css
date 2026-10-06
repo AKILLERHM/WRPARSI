@@ -1,0 +1,408 @@
+/* ==========================================================================
+   Runes & Spells Page Styles — runes_and_spells.css
+   ========================================================================== */
+
+.runes-spells-container {
+  max-width: 1200px;
+  margin: 2rem auto 3rem;
+  padding: 0 1.5rem;
+}
+
+.page-title {
+  text-align: center;
+  color: var(--color-heading, #0C969C);
+  margin-bottom: 1.8rem;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.runes-empty {
+  color: var(--color-text-muted, #0A7075);
+  font-size: 0.85rem;
+}
+
+.runes-empty--small {
+  opacity: 0.6;
+}
+
+/* ==========================================================================
+   RUNE's box
+   ========================================================================== */
+
+.runes-box {
+  background: var(--c-dark, #032F30);
+  border: 1px solid var(--color-surface-border, #274D60);
+  border-radius: 14px;
+  padding: 1.8rem;
+  margin-bottom: 2.2rem;
+}
+
+.runes-box__title {
+  text-align: center;
+  color: var(--color-heading, #0C969C);
+  font-size: 1.4rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  margin-bottom: 1.6rem;
+}
+
+/* ---------- ردیف رون‌های اصلی (Keystone) ---------- */
+
+.primary-runes-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.9rem;
+  padding-bottom: 1.8rem;
+  margin-bottom: 1.8rem;
+  border-bottom: 1px dashed var(--color-surface-border, #274D60);
+}
+
+/* ---------- آیکون رون (مشترک بین اصلی و فرعی) ---------- */
+
+.rune-icon {
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 2px solid var(--color-surface-border, #274D60);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rune-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.rune-icon:hover,
+.rune-icon:focus-visible {
+  border-color: var(--c-cyan, #0C969C);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(12, 150, 156, 0.35);
+  outline: none;
+}
+
+/* ---------- شبکه رون‌های فرعی: ۴ ستون دسته‌بندی‌شده ---------- */
+
+.secondary-runes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.rune-category-column {
+  padding: 0 1.2rem;
+  border-right: 1px solid var(--color-surface-border, #274D60);
+}
+
+.rune-category-column:first-child {
+  padding-right: 0;
+  border-right: none;
+}
+
+.rune-category-column:last-child {
+  padding-left: 1.2rem;
+}
+
+.rune-category-column__title {
+  position: relative;
+  text-align: center;
+  color: var(--color-text, #6BA3BE);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 1.1rem;
+  padding-top: 0.9rem;
+}
+
+/* لوزی تزئینی بالای عنوان هر دسته، مطابق طرح دست‌کشیده */
+.rune-category-column__title::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background: var(--c-cyan, #0C969C);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.rune-category-column__icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.rune-category-column__icons .rune-icon {
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+}
+
+/* ==========================================================================
+   Rune detail modal
+   ========================================================================== */
+
+.rune-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 23, 22, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  z-index: 1000;
+  animation: rune-modal-fade-in 0.15s ease;
+}
+
+@keyframes rune-modal-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.rune-modal {
+  position: relative;
+  background: var(--color-surface, #032F30);
+  border: 1px solid var(--color-surface-border, #274D60);
+  border-radius: 12px;
+  max-width: 480px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 1.8rem;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+.rune-modal__close {
+  position: absolute;
+  top: 0.7rem;
+  left: 0.7rem;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-text, #6BA3BE);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.rune-modal__close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.rune-modal__header {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.rune-modal__img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid var(--color-surface-border, #274D60);
+}
+
+.rune-modal__name {
+  color: var(--color-heading, #0C969C);
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+}
+
+.rune-type-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-text-muted, #6BA3BE);
+  font-size: 0.72rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+}
+
+.rune-modal__desc {
+  color: var(--color-text, #6BA3BE);
+  line-height: 1.9;
+}
+
+/* ==========================================================================
+   SPELL's box
+   ========================================================================== */
+
+.spells-box {
+  background: var(--c-dark, #032F30);
+  border: 1px solid var(--color-surface-border, #274D60);
+  border-radius: 14px;
+  padding: 1.8rem;
+}
+
+.spells-box__title {
+  text-align: center;
+  color: var(--color-heading, #0C969C);
+  font-size: 1.4rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  margin-bottom: 1.6rem;
+}
+
+.spells-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+  padding-bottom: 1.8rem;
+  margin-bottom: 1.8rem;
+  border-bottom: 1px dashed var(--color-surface-border, #274D60);
+}
+
+.spell-icon {
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 2px solid var(--color-surface-border, #274D60);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.spell-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.spell-icon:hover,
+.spell-icon:focus-visible {
+  border-color: var(--c-cyan, #0C969C);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(12, 150, 156, 0.35);
+  outline: none;
+}
+
+/* ---------- پنل جزئیات اسپل (ثابت، نه مودال) ---------- */
+
+.spell-detail-panel {
+  min-height: 220px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--color-surface-border, #274D60);
+  display: flex;
+}
+
+.spell-detail-panel__placeholder {
+  margin: auto;
+  color: var(--color-text-muted, #0A7075);
+  font-size: 0.9rem;
+}
+
+.spell-detail-panel__content {
+  position: relative;
+  width: 100%;
+  min-height: 220px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+}
+
+.spell-detail-panel__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(3, 23, 22, 0.92) 0%, rgba(3, 23, 22, 0.55) 45%, transparent 100%);
+}
+
+.spell-detail-panel__info {
+  position: relative;
+  z-index: 1;
+  padding: 1.2rem 1.4rem;
+  margin-right: auto; /* توی RTL یعنی بچسبه سمت راست */
+  text-align: right;
+  max-width: 60%;
+}
+
+.spell-detail-panel__name {
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 900;
+  margin-bottom: 0.3rem;
+}
+
+.spell-detail-panel__cooldown {
+  color: #FFE9A8;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.spell-detail-panel__desc {
+  color: var(--color-text, #6BA3BE);
+  font-size: 0.88rem;
+  line-height: 1.8;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .secondary-runes-grid {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 1.8rem;
+  }
+
+  .rune-category-column {
+    border-right: none;
+    border-bottom: 1px dashed var(--color-surface-border, #274D60);
+    padding-bottom: 1.4rem;
+  }
+
+  .rune-category-column:nth-child(odd) {
+    border-left: 1px solid var(--color-surface-border, #274D60);
+  }
+}
+
+@media (max-width: 600px) {
+  .runes-box,
+  .spells-box {
+    padding: 1.2rem;
+  }
+
+  .secondary-runes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rune-category-column:nth-child(odd) {
+    border-left: none;
+  }
+
+  .rune-category-column {
+    border-bottom: 1px dashed var(--color-surface-border, #274D60);
+  }
+
+  .rune-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+  }
+
+  .spell-detail-panel__info {
+    max-width: 80%;
+  }
+}

@@ -1,0 +1,14 @@
+<div class="spell-detail-panel__content"
+     {% if spell.img_url %}style="background-image: url('{{ spell.img_url }}');"{% endif %}>
+
+    <div class="spell-detail-panel__scrim"></div>
+
+    <div class="spell-detail-panel__info">
+        <h3 class="spell-detail-panel__name">{{ spell.name }}</h3>
+        <p class="spell-detail-panel__cooldown">کول‌داون: {{ spell.cooldown }} ثانیه</p>
+        {% if spell.description %}
+            <div class="spell-detail-panel__desc rich-text">{{ spell.description|safe }}</div>
+        {% endif %}
+    </div>
+
+</div>

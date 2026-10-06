@@ -1,0 +1,23 @@
+<div class="rune-modal-backdrop" onclick="document.getElementById('rune-modal-root').innerHTML='' ">
+    <div class="rune-modal" onclick="event.stopPropagation()">
+        <button type="button" class="rune-modal__close"
+                onclick="document.getElementById('rune-modal-root').innerHTML='' "
+                aria-label="بستن">&times;</button>
+
+        <div class="rune-modal__header">
+            {% if rune.img_url %}
+                <img src="{{ rune.img_url }}" alt="{{ rune.name }}" class="rune-modal__img">
+            {% endif %}
+            <div class="rune-modal__header-text">
+                <h2 class="rune-modal__name">{{ rune.name }}</h2>
+                <span class="rune-type-badge">
+                    {{ rune.get_role_display }}{% if rune.secondary_category %} · {{ rune.get_secondary_category_display }}{% endif %}
+                </span>
+            </div>
+        </div>
+
+        {% if rune.description %}
+            <div class="rune-modal__desc rich-text">{{ rune.description|safe }}</div>
+        {% endif %}
+    </div>
+</div>
