@@ -41,10 +41,10 @@ def runes_ans_spells_page(request):
 
 def rune_detail(request, pk):
     rune = get_object_or_404(Rune, pk=pk)
-    return render(request, "partials/rune_detial.html", {"rune": rune})
+    return render(request, "partials/rune_detail.html", {"rune": rune})
 
 
 
-def spell_detial(request, pk):
+def spell_detail(request, pk):
     spell = get_object_or_404(Spell, pk=pk)
-    return render(render, "partials/spell_detial.html", {"spell": spell})
+    return render(request, "partials/spell_detail.html", {"spell": spell})

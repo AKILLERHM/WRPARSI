@@ -45,6 +45,9 @@
 ### Item Page
 ![Item Page](screenshots/ItemPage.png)
 
+### Runes&Spells Page
+![Runes&Spells Page](screenshots/Runes&SpellsPages.png)
+
 
 
 ### Installation(نحوه نصب)
@@ -64,5 +67,4 @@ source .WRPvenv/bin/activate
 pip install -r requirements.txt
 
 python manage.py migrate
-python manage.py runserver
-```\
+python manage.py runserver ```\
