@@ -14,3 +14,25 @@
 {% empty %}
     <p>هیچ نوع آیتمی تعریف نشده</p>
 {% endfor %}
+
+
+<!--    باکس/بخش بوت ها: پایه / میان رده / تکامل یافته    -->
+<section class="boots-box">
+    <h2 class="boots-box__title">Boots</h2>
+
+    <div class="boots-box__groups">
+        {% for group in boot_groups %}
+            <div class="boots-group">
+                <h3 class="boots-group__title">{{ group.label }}</h3>
+
+                <div class="items-grid items-grid--compact">
+                    {% for item in group.items %}
+                        {% include "partials/item_card.html" %}
+                    {% empty %}
+                        <p class="boots-groups__empty">بوتی ثبت نشده</p>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>

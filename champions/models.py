@@ -1,5 +1,8 @@
 from django.db import models
 from django.utils.text import slugify
+from items.models import Item
+from runes.models import Rune, Spell
+
 
 
 class ChampionRole(models.Model):
@@ -15,6 +18,7 @@ class ChampionRole(models.Model):
 
     def __str__(self):
              return self.name
+
 
 
 class Champion(models.Model):
@@ -46,6 +50,7 @@ class Champion(models.Model):
 
     def __str__(self):
         return self.name
+
 
 
 class Ability(models.Model):
@@ -87,6 +92,114 @@ class Ability(models.Model):
                                      choices=ResourceType.choices)
 
     def __str__(self):
-         return f"{self.champion} --- {self.type} ---{self.name}"
+        return f"{self.champion} --- {self.type} ---{self.name}"
 
+
+
+class Build(models.Model):
+    champion = models.ForeignKey(
+        Champion,
+        on_delete=models.CASCADE,
+        related_name="builds"
+    )
+    name = models.CharField(max_length=128)
+
+    def __str__(self):
+         return f"{self.champion.name} - {self.name}"
+
+
+
+class BuildItem(models.Model):
+    build = models.ForeignKey(
+        Build,
+        on_delete=models.CASCADE,
+        related_name="build_items"
+    )
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    slot = models.PositiveSmallIntegerField()
+
+    class Meta:
+         ordering = ["slot"]
+         constraints = [
+            models.UniqueConstraint(
+                fields=["build", "slot"],
+                name="uniqe_build_item_slot"
+            ),
+            models.CheckConstraint(
+                condition=models.Q(slot__gte=1, slot__lte=5),
+                name="build_item_slot_range",
+            ),
+         ]
+
+
+
+class BuildBoot(models.Model):
+    build = models.ForeignKey(
+         Build,
+         on_delete=models.CASCADE,
+         related_name="build_boots"
+    )
+    boot = models.ForeignKey(Item, on_delete=models.CASCADE)
+    slot = models.PositiveSmallIntegerField()
+
+    class Meta:
+         ordering = ["slot"]
+         constraints = [
+              models.UniqueConstraint(
+                   fields=["build", "slot"],
+                   name="Unique_build_boot_slot"
+              ),
+              models.CheckConstraint(
+                   condition=models.Q(slot__gte=1, slot__lte=2),
+                   name="build_boot_slot_range",
+              ),
+         ]
+
+
+     
+class BuildRune(models.Model):
+    build = models.ForeignKey(
+        Build,
+        on_delete=models.CASCADE,
+        related_name="build_runes" 
+    )
+    rune = models.ForeignKey(Rune, on_delete=models.CASCADE)
+    slot = models.PositiveSmallIntegerField()
+
+    class Meta:
+         ordering = ["slot"]
+         constraints = [
+              models.UniqueConstraint(
+                   fields=["build", "slot"],
+                   name="unique_build_rune_slot"
+              ),
+              models.CheckConstraint(
+                   condition=models.Q(slot__gte=1, slot__lte=5),
+                   name="build_rune_slot_range",
+              ),
+         ]
+
+
+
+class BuildSpell(models.Model):
+     build = models.ForeignKey(
+        Build,
+        on_delete=models.CASCADE,
+        related_name="build_spells"
+     )
+     spell = models.ForeignKey(Spell, on_delete=models.CASCADE)
+     slot = models.PositiveSmallIntegerField()
+
+     class Meta:
+          ordering = ["slot"]
+          constraints = [
+               models.UniqueConstraint(
+                    fields=["build", "slot"],
+                    name="unique_build_spell_slot"
+               ),
+               models.CheckConstraint(
+                    condition=models.Q(slot__gte=1, slot__lte=2),
+                    name="build_spell_slot_range",
+               ),
+          ]
 

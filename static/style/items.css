@@ -61,6 +61,87 @@
   border-bottom: 1px solid var(--color-surface-border, #274D60);
 }
 
+
+/* ==========================================================================
+   باکس بوت‌ها (Boots) — سه بخش: پایه / میان‌رده / تکامل‌یافته
+   ========================================================================== */
+
+.boots-box {
+  background: var(--c-dark, #032F30);
+  border: 1px solid var(--color-surface-border, #274D60);
+  border-radius: 14px;
+  padding: 1.2rem 1.4rem 1.4rem;
+  margin-bottom: 2.8rem;
+}
+
+.boots-box__title {
+  color: var(--color-heading, #0C969C);
+  font-size: 1.15rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-surface-border, #274D60);
+}
+
+.boots-box__groups {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.boots-group {
+  min-width: 0;
+  min-height: 150px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--color-surface-border, #274D60);
+  border-radius: 10px;
+  padding: 0.9rem;
+}
+
+.boots-group__title {
+  text-align: center;
+  color: var(--color-text, #6BA3BE);
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+
+.boots-group__empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--color-text-muted, #0A7075);
+  font-size: 0.8rem;
+}
+
+/* کارت‌های کوچک‌تر داخل هر بخش بوت
+   (دو کلاس پشت‌هم تا روی media query های .items-grid اولویت داشته باشه) */
+.items-grid.items-grid--compact {
+  grid-template-columns: repeat(auto-fill, 72px);
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.items-grid--compact .item-card__name {
+  font-size: 0.62rem;
+}
+
+.items-grid--compact .item-card__price {
+  font-size: 0.6rem;
+}
+
+@media (max-width: 800px) {
+  .boots-box__groups {
+    grid-template-columns: 1fr;
+  }
+
+  .boots-group {
+    min-height: 0;
+  }
+}
+
+
 /* ---------- گرید آیتم‌ها ---------- */
 
 .items-grid {
