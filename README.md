@@ -39,8 +39,14 @@
 ### Champion Page
 ![Champion Page](screenshots/ChampionPage.png)
 
+### Champion Builds
+![Champion Builds](screenshots/championbuilds.png)
+
 ### Items Page
 ![Items Page](screenshots/ItemsPage.png)
+
+### Boots Parts
+![Boots Parts](screenshots/BootsParts.png)
 
 ### Item Page
 ![Item Page](screenshots/ItemPage.png)

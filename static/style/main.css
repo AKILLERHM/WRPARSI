@@ -192,17 +192,23 @@ section {
 
 /*  رنگ بندی استت های توی توضیحات (مثل ابیلیتی یا آیتم یا رون) */
 
-.stat-ad { color: #E67E22 ; font-weight: 800; }   /*  AD---نارنجی*/
-.stat-ap {color: #9B59B6; font-weight: 800; }    /* AP---بنفش */
-.stat-heal {color: #2ECC71; font-weight: 800; } /* HP---سبز */
-.stat-ms {color: #D3D3D3; font-weight: 800; }  /* MS---خاکستری روشن */
-.stat-true-dmg {color: #F9F6EE; font-weight: 800; } /* TRUE_DAMAGE---سفید */
-.stat-as {color: #FFFF8F ; font-weight: 800; }  /* AS---زرد */ 
+.stat-ad {color:#874731; font-weight: 800;}/* AD---نارنجی */
+.stat-ad-bonus{color:#E2934A; font-weight: 800;}/* ad-bonus---نارنجی */
+.stat-ap {color:#766FE0; font-weight: 800;}/* AP---آبی نفتی */
+.stat-magicpen {color:#331845; font-weight: 800;}
+.stat-mg{color:#2F757F; font-weight: 800;}/* ابی---magic dmg */
+.stat-heal {color:#23965E; font-weight: 800;}/* HP---سبز */
+.stat-ms {color:#D3D3D3; font-weight: 800;}/* MS---خاکستری روشن */
+.stat-true-dmg {color:#7A888D; font-weight: 800;}/* TRUE_DAMAGE---سفید */
+.stat-as {color:#9A9C89; font-weight: 800;}/* AS---زرد */ 
+.stat-cc {color:#6D5874; font-weight: 800;}/* stun-cc-imoblize---بنفش */
+.stat-reminded {color:#B8900F; font-weight: 800;}/* نام آوری دوباره */
+.stat-armor {color:#DCCD67; font-weight: 800;}
+.stat-magicresist {color:#73D6E9; font-weight: 800;}
 
 /* =========================================================
    FOOTER
 ========================================================= */
-
 .site-footer {
     width: 100%;
 

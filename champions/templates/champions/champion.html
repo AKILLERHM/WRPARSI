@@ -220,79 +220,152 @@
 </section>
 
 
-    <!-- =====================================================
-         Items
-         فعلاً غیرفعال
-         ===================================================== -->
+    
+<!-- Builds -->
+<section class="champion-builds" id="champion-builds">
+    <h2 class="section-title">بیلدها</h2>
 
-    <section class="champion-items disabled-section">
+    {% if builds %}
+        <nav class="build-tabs" aria-label="انتخاب بیلد">
+            {% for build in builds %}
+                <a
+                    class="build-tab{% if selected_build.pk == build.pk %} is-active{% endif %}"
+                    href="?build={{ build.pk }}#champion-builds"
+                    {% if selected_build.pk == build.pk %}aria-current="true"{% endif %}
+                >
+                    {{ build.name }}
+                </a>
+            {% endfor %}
+        </nav>
 
-        <div class="section-title">
-            <span>آیتم‌ها</span>
-        </div>
+        {% if selected_build and build_slots %}
+            <div class="build-content">
 
+                <section class="build-items-panel">
+                    <h3 class="build-subtitle">آیتم‌ها</h3>
 
-        <div class="items-row">
+                    <div class="build-items-row">
+                        {% for item in build_slots.items %}
+                            <div class="build-item-slot{% if not item %} is-empty{% endif %}">
+                                {% if item %}
+                                    <div
+                                        class="build-item-click"
+                                        {% if item.slug %}
+                                            hx-get="{% url 'ItemDetail' item.slug %}"
+                                            hx-target="#item-modal-root"
+                                            hx-swap="innerHTML"
+                                        {% endif %}
+                                        role="button"
+                                        tabindex="0"
+                                        title="{{ item.name }}"
+                                    >
+                                        {% if item.image_url %}
+                                            <img src="{{ item.image_url }}" alt="{{ item.name }}" loading="lazy">
+                                        {% else %}
+                                            <span class="build-slot-number">آیتم</span>
+                                        {% endif %}
+                                    </div>
+                                    <span class="build-item-name">{{ item.name }}</span>
+                                {% else %}
+                                    <span class="build-slot-number">{{ forloop.counter }}</span>
+                                    <span class="build-item-name">خالی</span>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
 
-            <div class="item-slot"></div>
-            <div class="item-slot"></div>
-            <div class="item-slot"></div>
-            <div class="item-slot"></div>
-            <div class="item-slot"></div>
+                    <h3 class="build-subtitle">بوت‌ها</h3>
 
-            <div class="item-slot item-slot--boot"></div>
+                    <div class="build-items-row build-boots-row">
+                        {% for boot in build_slots.boots %}
+                            <div class="build-item-slot build-boot-slot{% if not boot %} is-empty{% endif %}">
+                                {% if boot %}
+                                    <div class="build-item-click" title="{{ boot.name }}">
+                                        {% if boot.image_url %}
+                                            <img src="{{ boot.image_url }}" alt="{{ boot.name }}" loading="lazy">
+                                        {% else %}
+                                            <span class="build-slot-number">{{ forloop.counter }}</span>
+                                        {% endif %}
+                                    </div>
+                                    <span class="build-item-name">{{ boot.name }}</span>
+                                {% else %}
+                                    <span class="build-slot-number">{{ forloop.counter }}</span>
+                                    <span class="build-item-name">خالی</span>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </section>
 
-        </div>
+                <section class="build-loadout">
+                    <div class="build-loadout-column">
+                        <h3 class="build-subtitle">رون‌ها</h3>
 
-    </section>
+                        <div class="build-runes-row">
+                            {% for rune in build_slots.runes %}
+                                <div class="build-rune-slot{% if forloop.first %} is-primary{% endif %}{% if not rune %} is-empty{% endif %}">
+                                    {% if rune %}
+                                        <div
+                                            class="build-rune-click"
+                                            hx-get="{% url 'RuneDetail' rune.pk %}"
+                                            hx-target="#rune-modal-root"
+                                            hx-swap="innerHTML"
+                                            role="button"
+                                            tabindex="0"
+                                            title="{{ rune.name }}"
+                                        >
+                                            {% if rune.img_url %}
+                                                <img src="{{ rune.img_url }}" alt="{{ rune.name }}" loading="lazy">
+                                            {% else %}
+                                                <span>{{ rune.name }}</span>
+                                            {% endif %}
+                                        </div>
+                                    {% else %}
+                                        <span>{{ forloop.counter }}</span>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
 
+                        <p class="build-empty-note">
+                            اسلات اول: رون اصلی؛ چهار اسلات بعدی: رون‌های فرعی
+                        </p>
+                    </div>
 
-    <!-- =====================================================
-         Runes + Spells
-         فعلاً غیرفعال
-         ===================================================== -->
+                    <div class="build-loadout-column">
+                        <h3 class="build-subtitle">اسپل‌ها</h3>
 
-    <section class="champion-loadout disabled-section">
-
-        <div class="loadout-column">
-
-            <h2 class="loadout-title">
-                رون‌ها
-            </h2>
-
-
-            <div class="runes-row">
-
-                <div class="rune-icon rune-icon--primary"></div>
-
-                <div class="rune-icon"></div>
-                <div class="rune-icon"></div>
-                <div class="rune-icon"></div>
-                <div class="rune-icon"></div>
-
+                        <div class="build-spells-row">
+                            {% for spell in build_slots.spells %}
+                                <div class="build-spell-slot{% if not spell %} is-empty{% endif %}">
+                                    {% if spell %}
+                                        <div class="build-spell-click" title="{{ spell.name }}">
+                                            {% if spell.img_url %}
+                                                <img src="{{ spell.img_url }}" alt="{{ spell.name }}" loading="lazy">
+                                            {% else %}
+                                                <span>{{ spell.name }}</span>
+                                            {% endif %}
+                                        </div>
+                                    {% else %}
+                                        <span>{{ forloop.counter }}</span>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </section>
             </div>
+        {% endif %}
+    {% else %}
+        <p class="build-empty-message">
+            هنوز بیلدی برای این چمپیون ثبت نشده است.
+        </p>
+    {% endif %}
+</section>
 
-        </div>
+<!-- ریشه‌های مودال برای HTMX -->
+<div id="item-modal-root"></div>
+<div id="rune-modal-root"></div>
 
-
-        <div class="loadout-column">
-
-            <h2 class="loadout-title">
-                اسپل‌ها
-            </h2>
-
-
-            <div class="spells-row">
-
-                <div class="spell-icon"></div>
-                <div class="spell-icon"></div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-</div>
 
 {% endblock content %}

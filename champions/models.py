@@ -202,4 +202,3 @@ class BuildSpell(models.Model):
                     name="build_spell_slot_range",
                ),
           ]
-
